@@ -12,6 +12,7 @@ namespace PluieDeFleche.Engine.Entities.Player
 		private PlayerData _data;
 		private PlayerParameters _parameters;
 		private Camera3D _cam;
+		private Node3D _bow;
 		private Vector2 _rot;
 
 		private const float PRECISION = 4096.0f;
@@ -24,6 +25,7 @@ namespace PluieDeFleche.Engine.Entities.Player
 			_data = GetNode<PlayerData>("./NOD_Data");
 			_parameters = GetNode<PlayerParameters>("./NOD_Parameters");
 			_cam = GetNode<Camera3D>("./CAM_Player");
+			_bow = GetNode<Node3D>("./SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud/N3D_WeaponOrigin/WPN_Bow");
 
 			_data.InvMass = 1.0f / _parameters.Mass;
 		}
@@ -42,7 +44,13 @@ namespace PluieDeFleche.Engine.Entities.Player
 		public override void _Process(double delta)
 		{
 			Quaternion quat;
+			float dRotX;
+			float dRotY;
 
+			_data.OldRawRotation = _data.RawRotation;
+			_data.OldRotation = _data.Rotation;
+
+			_data.RawRotation = _rot;
 			_data.Rotation = new Vector2(_rot.X / PRECISION * (Mathf.Pi * 2.0f), _rot.Y / PRECISION * (Mathf.Pi * 2.0f));
 
 			quat = new Quaternion(Vector3.Up, -_data.Rotation.X);
@@ -50,6 +58,25 @@ namespace PluieDeFleche.Engine.Entities.Player
 
 			quat = new Quaternion(Vector3.Right, -_data.Rotation.Y);
 			_cam.Transform = new Transform3D(new Basis(quat), _cam.Transform.Origin);
+
+			dRotX = _data.OldRawRotation.X - _data.RawRotation.X;
+
+			if (Math.Abs(dRotX) > PRECISION * 0.5f)
+			{
+				dRotX -= PRECISION * Math.Sign(dRotX) * 1.0f;
+			}
+
+			dRotX *= 0.002f;
+
+			dRotY = _data.RawRotation.Y - _data.OldRawRotation.Y;
+			dRotY *= 0.005f;
+
+			_bow.Transform = new Transform3D(
+				_bow.Transform.Basis,
+				new Vector3(
+					Mathf.Lerp(_bow.Transform.Origin.X, dRotX, (float)(delta * 5.0d)),
+					Mathf.Lerp(_bow.Transform.Origin.Y, dRotY - _data.Velocity.Y * 0.02f, (float)(delta * 5.0d)),
+					0));
 		}
 
 		public override void _PhysicsProcess(double delta)
@@ -57,6 +84,7 @@ namespace PluieDeFleche.Engine.Entities.Player
 			Vector3 acc;
 			Vector3 vel;
 			Vector3 flatVel;
+			Vector3 flatAcc;
 
 			acc = Vector3.Zero;
 
@@ -87,28 +115,33 @@ namespace PluieDeFleche.Engine.Entities.Player
 				}
 			}
 
-			acc *= Transform.Basis.Inverse();
+			acc = Transform.Basis * acc;
+			flatAcc = new Vector3(acc.X, 0, acc.Z);
 
-			if(!IsOnFloor())
+			if (flatAcc.Length() > _parameters.Speed)
 			{
-				acc.Y -= _parameters.Gravity;
+				flatAcc = flatAcc.Normalized() * _parameters.Speed;
+				acc.X = flatAcc.X;
+				acc.Z = flatAcc.Z;
+			}
+
+			if (!IsOnFloor())
+			{
+				acc.Y -= _parameters.Gravity * _parameters.Mass;
 			}
 
 			vel = Velocity;
-			vel += acc * _data.InvMass;
 			flatVel = new Vector3(vel.X, 0, vel.Z);
 
-			if (flatVel.Length() > _parameters.Speed)
+			if (IsOnFloor())
 			{
-				flatVel = flatVel.Normalized() * _parameters.Speed;
-				vel.X = flatVel.X;
-				vel.Z = flatVel.Z;
+				acc -= flatVel * _parameters.Friction;
 			}
+
+			vel += acc * _data.InvMass;
 
 			if(IsOnFloor())
 			{
-				vel -= flatVel * (1.0f - 1.0f / _parameters.Friction);
-
 				if (Math.Abs(vel.X) < 0.001f)
 				{
 					vel.X = 0.0f;
@@ -122,6 +155,7 @@ namespace PluieDeFleche.Engine.Entities.Player
 
 			Velocity = vel;
 			MoveAndSlide();
+			_data.Velocity = Velocity;
 		}
 	}
 }

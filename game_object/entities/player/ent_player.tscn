@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerParameters.cs" id="2_st623"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerData.cs" id="3_tnre5"]
 [ext_resource type="Script" path="res://Engine/Common/WorldPositionSyncNode.cs" id="4_0pgdc"]
-[ext_resource type="PackedScene" uid="uid://bwfw220hqpexi" path="res://game_objects/weapons/wpn_bow.tscn" id="5_ccpm8"]
+[ext_resource type="PackedScene" uid="uid://bwfw220hqpexi" path="res://game_object/weapons/wpn_bow.tscn" id="5_ccpm8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6ulo"]
 radius = 0.25
@@ -28,6 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 cull_mask = 1
 
 [node name="SVC_Hud" type="SubViewportContainer" parent="."]
+top_level = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,5 +50,7 @@ SyncTo = NodePath("../../../CAM_Player")
 [node name="CAM_Hud" type="Camera3D" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin"]
 cull_mask = 524288
 
-[node name="WPN_Bow" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud" instance=ExtResource("5_ccpm8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00939, -0.0380741, -1.4245)
+[node name="N3D_WeaponOrigin" type="Node3D" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.165904, -0.0133188, -0.258539)
+
+[node name="WPN_Bow" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud/N3D_WeaponOrigin" instance=ExtResource("5_ccpm8")]

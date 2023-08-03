@@ -16,6 +16,15 @@ namespace PluieDeFleche.Engine.Entities.Player
         public float InvMass { get; set; }
 
         [Export]
+        public Vector2 RawRotation { get; set; }
+
+        [Export]
+        public Vector2 OldRawRotation { get; set; }
+
+        [Export]
         public Vector2 Rotation { get; set; }
+
+        [Export]
+        public Vector2 OldRotation { get; set; }
     }
 }
