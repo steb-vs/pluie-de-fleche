@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/devmap_jam/test.gd" id="1_nkut2"]
 [ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="3_4t7mj"]
-[ext_resource type="PackedScene" uid="uid://c4cn4kw3yp3y1" path="res://game_object/entities/malemoniak/chb_malemoniak.tscn" id="3_spgdc"]
+[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/a_3d_spawner.tscn" id="3_vesr4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
 vertices = PackedVector3Array(8.5, 0.5, -22.25, 8.5, 0.5, -29.5, 0, 0.5, -29.5, 0, 0.5, -29.5, -8.5, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, 22, -8.5, 0.5, 29.5, 0, 0.5, 29.5, 0, 0.5, 29.5, 8.5, 0.5, 29.5, 8.5, 0.5, 22, -8.5, 0.5, 22, 0, 0.5, 29.5, 8.5, 0.5, 22, 8.5, 0.5, 14.75, -8.5, 0.5, 14.75, 8.5, 0.5, -22.25, 0, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, -14.75, 8.5, 0.5, -14.75, -8.5, 0.5, -7.5, -8.5, 0.5, 0, 8.5, 0.5, 0, 8.5, 0.5, -7.5, -8.5, 0.5, -14.75, -8.5, 0.5, -7.5, 8.5, 0.5, -7.5, 8.5, 0.5, -14.75, -8.5, 0.5, 7.25, -8.5, 0.5, 14.75, 8.5, 0.5, 14.75, 8.5, 0.5, 7.25, -8.5, 0.5, 0, -8.5, 0.5, 7.25, 8.5, 0.5, 7.25, 8.5, 0.5, 0)
@@ -34,133 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 0.279058, 0.960274, 0, -0.960274, 0.279058, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ttq1c")
 
-[node name="CHB_Malemoniak" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262889, 0.851871, 24.7987)
-distance = -28.0
-
-[node name="CHB_Malemoniak2" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01055, 0.851871, 25.0547)
-distance = -28.0
-
-[node name="CHB_Malemoniak3" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.970955, 0.851871, 24.7987)
-distance = -28.0
-
-[node name="CHB_Malemoniak4" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77671, 0.851871, 25.0547)
-distance = -28.0
-
-[node name="CHB_Malemoniak5" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57361, 0.851871, 25.5314)
-distance = -28.0
-
-[node name="CHB_Malemoniak6" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17406, 0.851871, 25.7874)
-distance = -28.0
-
-[node name="CHB_Malemoniak7" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80745, 0.851871, 25.5314)
-distance = -28.0
-
-[node name="CHB_Malemoniak8" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0597892, 0.851871, 25.7874)
-distance = -28.0
-
-[node name="CHB_Malemoniak9" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0565, 0.851871, 26.8854)
-distance = -28.0
-
-[node name="CHB_Malemoniak10" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80416, 0.851871, 27.1414)
-distance = -28.0
-
-[node name="CHB_Malemoniak11" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.82266, 0.851871, 26.8854)
-distance = -28.0
-
-[node name="CHB_Malemoniak12" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.57032, 0.851871, 27.1414)
-distance = -28.0
-
-[node name="CHB_Malemoniak13" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22001, 0.851871, 27.6181)
-distance = -28.0
-
-[node name="CHB_Malemoniak14" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.96767, 0.851871, 27.8741)
-distance = -28.0
-
-[node name="CHB_Malemoniak15" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.986163, 0.851871, 27.6181)
-distance = -28.0
-
-[node name="CHB_Malemoniak16" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.73382, 0.851871, 27.8741)
-distance = -28.0
-
-[node name="CHB_Malemoniak17" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21119, 0.851871, 26.3369)
-distance = -28.0
-
-[node name="CHB_Malemoniak18" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46353, 0.851871, 26.593)
-distance = -28.0
-
-[node name="CHB_Malemoniak19" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44503, 0.851871, 26.3369)
-distance = -28.0
-
-[node name="CHB_Malemoniak20" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69737, 0.851871, 26.593)
-distance = -28.0
-
-[node name="CHB_Malemoniak21" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04768, 0.851871, 27.0697)
-distance = -28.0
-
-[node name="CHB_Malemoniak22" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30002, 0.851871, 27.3257)
-distance = -28.0
-
-[node name="CHB_Malemoniak23" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.28153, 0.851871, 27.0697)
-distance = -28.0
-
-[node name="CHB_Malemoniak24" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.53387, 0.851871, 27.3257)
-distance = -28.0
-
-[node name="CHB_Malemoniak25" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.417575, 0.851871, 28.4236)
-distance = -28.0
-
-[node name="CHB_Malemoniak26" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33009, 0.851871, 28.6797)
-distance = -28.0
-
-[node name="CHB_Malemoniak27" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65142, 0.851871, 28.4236)
-distance = -28.0
-
-[node name="CHB_Malemoniak28" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09624, 0.851871, 28.6797)
-distance = -28.0
-
-[node name="CHB_Malemoniak29" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25407, 0.851871, 29.1564)
-distance = -28.0
-
-[node name="CHB_Malemoniak30" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.493591, 0.851871, 29.4124)
-distance = -28.0
-
-[node name="CHB_Malemoniak31" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48792, 0.851871, 29.1564)
-distance = -28.0
-
-[node name="CHB_Malemoniak32" parent="." instance=ExtResource("3_spgdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.740254, 0.851871, 29.4124)
-distance = -28.0
-
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -28)
+
+[node name="A3D_Spawner" parent="." instance=ExtResource("3_vesr4")]
