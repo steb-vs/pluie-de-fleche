@@ -63,3 +63,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78779, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="A3D_HurtBoxHead"]
 shape = SubResource("SphereShape3D_4i7rj")
+
+[node name="NVA" type="NavigationAgent3D" parent="."]
