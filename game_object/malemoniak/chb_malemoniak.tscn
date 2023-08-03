@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4cn4kw3yp3y1"]
+
+[ext_resource type="Script" path="res://game_object/malemoniak/chb_malemoniak.gd" id="1_y20ux"]
+[ext_resource type="Shader" path="res://game_object/malemoniak/chb_malemoniak.gdshader" id="2_m4sic"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i6l2a"]
+height = 1.8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7c7sd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ydhw3"]
+noise = SubResource("FastNoiseLite_7c7sd")
+
+[sub_resource type="Gradient" id="Gradient_sg7pk"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6eio"]
+gradient = SubResource("Gradient_sg7pk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gto5x"]
+render_priority = 0
+shader = ExtResource("2_m4sic")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/emission_color = Color(0.870588, 0.647059, 0.172549, 1)
+shader_parameter/emission_amount = 10.0
+shader_parameter/burn_size = 0.01
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_a6eio")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_ydhw3")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vx2f4"]
+height = 1.0
+radius = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4i7rj"]
+radius = 0.4
+
+[node name="CHB_Malemoniak" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47215, 0)
+script = ExtResource("1_y20ux")
+
+[node name="CLS_Character" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325239, 0)
+shape = SubResource("CapsuleShape3D_i6l2a")
+
+[node name="CSG_Body" type="CSGCylinder3D" parent="."]
+radius = 0.4
+height = 1.0
+material = SubResource("ShaderMaterial_gto5x")
+
+[node name="A3D_HurtBoxBody" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="A3D_HurtBoxBody"]
+shape = SubResource("CylinderShape3D_vx2f4")
+
+[node name="CSG_Head" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.788117, 0)
+radius = 0.4
+material = SubResource("ShaderMaterial_gto5x")
+
+[node name="A3D_HurtBoxHead" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78779, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="A3D_HurtBoxHead"]
+shape = SubResource("SphereShape3D_4i7rj")
