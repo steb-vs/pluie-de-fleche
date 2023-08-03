@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://spmccg3yf3q3"
+path="res://.godot/imported/unite_1x1x1_goxel.obj-5d51e21835ffcd6a5a4d49f905f29d5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/unite_1x1x1_goxel.obj-5d51e21835ffcd6a5a4d49f905f29d5e.mesh"]
+
+source_file="res://models/unite_1x1x1_goxel/unite_1x1x1_goxel.obj"
+dest_files=["res://.godot/imported/unite_1x1x1_goxel.obj-5d51e21835ffcd6a5a4d49f905f29d5e.mesh", "res://.godot/imported/unite_1x1x1_goxel.obj-5d51e21835ffcd6a5a4d49f905f29d5e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

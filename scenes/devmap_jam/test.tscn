@@ -1,22 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvaxeryy0gy1s"]
+[gd_scene load_steps=5 format=3 uid="uid://cvaxeryy0gy1s"]
 
 [ext_resource type="Script" path="res://scenes/devmap_jam/test.gd" id="1_nkut2"]
-[ext_resource type="PackedScene" uid="uid://c4cn4kw3yp3y1" path="res://game_object/malemoniak/chb_malemoniak.tscn" id="1_v2ii3"]
+[ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="3_4t7mj"]
+[ext_resource type="PackedScene" uid="uid://c4cn4kw3yp3y1" path="res://game_object/entities/malemoniak/chb_malemoniak.tscn" id="3_spgdc"]
+
+[sub_resource type="Environment" id="Environment_ttq1c"]
 
 [node name="test" type="Node3D"]
 script = ExtResource("1_nkut2")
-
-[node name="Floor" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(10, 0.2, 10)
-
-[node name="CHB_Malemoniak" parent="." instance=ExtResource("1_v2ii3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29829, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.992899, -0.0377815, 0.112799, 0, 0.948224, 0.317603, -0.118959, -0.315347, 0.941491, 0.00414181, 5.76217, 8.16833)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="CSG_valley" parent="." instance=ExtResource("3_4t7mj")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.279058, 0.960274, 0, -0.960274, 0.279058, 0, 17.8164, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttq1c")
+
+[node name="CHB_Malemoniak" parent="." instance=ExtResource("3_spgdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262889, 5.33032, -0.0380025)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr7wn4kmqrurg"]
+
+[ext_resource type="ArrayMesh" uid="uid://ceiuuuv23xia5" path="res://models/valley/valley.obj" id="1_su21u"]
+
+[node name="CSG_valley" type="CSGMesh3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 6, 0, 0, 0)
+use_collision = true
+mesh = ExtResource("1_su21u")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c4cn4kw3yp3y1"]
 
-[ext_resource type="Script" path="res://game_object/malemoniak/chb_malemoniak.gd" id="1_y20ux"]
-[ext_resource type="Shader" path="res://game_object/malemoniak/chb_malemoniak.gdshader" id="2_m4sic"]
+[ext_resource type="Script" path="res://game_object/entities/malemoniak/chb_malemoniak.gd" id="1_21l87"]
+[ext_resource type="Shader" path="res://game_object/entities/malemoniak/chb_malemoniak.gdshader" id="2_5f5ay"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i6l2a"]
 height = 1.8
@@ -19,7 +19,7 @@ gradient = SubResource("Gradient_sg7pk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gto5x"]
 render_priority = 0
-shader = ExtResource("2_m4sic")
+shader = ExtResource("2_5f5ay")
 shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/emission_color = Color(0.870588, 0.647059, 0.172549, 1)
 shader_parameter/emission_amount = 10.0
@@ -37,7 +37,7 @@ radius = 0.4
 
 [node name="CHB_Malemoniak" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47215, 0)
-script = ExtResource("1_y20ux")
+script = ExtResource("1_21l87")
 
 [node name="CLS_Character" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325239, 0)
