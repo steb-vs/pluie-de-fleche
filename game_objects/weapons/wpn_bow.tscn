@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwfw220hqpexi"]
+
+[ext_resource type="Script" path="res://Engine/Entities/Weapons/BowWeapon.cs" id="1_snwi7"]
+[ext_resource type="PackedScene" uid="uid://bjhxokrnnc831" path="res://models/mdl_bow.tscn" id="2_eoack"]
+
+[node name="WPN_Bow" type="Node3D"]
+script = ExtResource("1_snwi7")
+
+[node name="MDL_Bow" parent="." instance=ExtResource("2_eoack")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

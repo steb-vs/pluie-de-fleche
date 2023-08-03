@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgf6vpi3tfeyu"]
+
+[ext_resource type="Script" path="res://Engine/Entities/Player/PlayerEntity.cs" id="1_bjbxg"]
+[ext_resource type="Script" path="res://Engine/Entities/Player/PlayerParameters.cs" id="2_st623"]
+[ext_resource type="Script" path="res://Engine/Entities/Player/PlayerData.cs" id="3_tnre5"]
+[ext_resource type="Script" path="res://Engine/Common/WorldPositionSyncNode.cs" id="4_0pgdc"]
+[ext_resource type="PackedScene" uid="uid://bwfw220hqpexi" path="res://game_objects/weapons/wpn_bow.tscn" id="5_ccpm8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6ulo"]
+radius = 0.25
+height = 1.7
+
+[node name="ENT_Player" type="CharacterBody3D"]
+script = ExtResource("1_bjbxg")
+
+[node name="NOD_Parameters" type="Node" parent="."]
+script = ExtResource("2_st623")
+
+[node name="NOD_Data" type="Node" parent="."]
+script = ExtResource("3_tnre5")
+
+[node name="CLS_Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_g6ulo")
+
+[node name="CAM_Player" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+cull_mask = 1
+
+[node name="SVC_Hud" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SVP_Hud" type="SubViewport" parent="SVC_Hud"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="N3D_HudOrigin" type="Node3D" parent="SVC_Hud/SVP_Hud"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+script = ExtResource("4_0pgdc")
+SyncTo = NodePath("../../../CAM_Player")
+
+[node name="CAM_Hud" type="Camera3D" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin"]
+cull_mask = 524288
+
+[node name="WPN_Bow" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud" instance=ExtResource("5_ccpm8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00939, -0.0380741, -1.4245)

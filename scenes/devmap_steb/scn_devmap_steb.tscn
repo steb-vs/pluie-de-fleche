@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://dswepbr3is2u7"]
+[gd_scene load_steps=5 format=3 uid="uid://dswepbr3is2u7"]
+
+[ext_resource type="Texture2D" uid="uid://daevg2704r27p" path="res://icon.svg" id="1_4xs1w"]
+[ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_objects/player/ent_player.tscn" id="1_87g4i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bsgs"]
+albedo_texture = ExtResource("1_4xs1w")
+uv1_scale = Vector3(26.58, 26.58, 26.58)
+
+[sub_resource type="Environment" id="Environment_l2rfe"]
+background_mode = 1
+background_color = Color(0.585864, 0.752975, 1, 1)
 
 [node name="SCN_DevmapSteb" type="Node3D"]
+
+[node name="ENT_Player" parent="." instance=ExtResource("1_87g4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.959873, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(20, 0.1, 20)
+material = SubResource("StandardMaterial3D_3bsgs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l2rfe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 3.53454, 0)

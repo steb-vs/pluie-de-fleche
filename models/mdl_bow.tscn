@@ -541,6 +541,7 @@ bones/31/rotation = Quaternion(1.05135e-17, -3.13375e-18, 1.38778e-17, 1)
 bones/31/scale = Vector3(1, 1, 1)
 
 [node name="Object_41" type="MeshInstance3D" parent="Sketchfab_model/273ae76213ab4e2ea5a53bc50580f6a7_fbx/Object_2/RootNode/English Long Bow Armature/Object_7/Skeleton3D"]
+layers = 524288
 mesh = SubResource("ArrayMesh_60sdn")
 skin = SubResource("Skin_6fvwk")
 

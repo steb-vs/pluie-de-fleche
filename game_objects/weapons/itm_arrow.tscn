@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://2jvu8sme00sq"]
+
+[ext_resource type="PackedScene" uid="uid://b0aoype4yvx6b" path="res://models/mdl_arrow.tscn" id="1_3m0t2"]
+[ext_resource type="Script" path="res://Engine/Entities/Weapons/ArrowItem.cs" id="1_wofgb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ymeem"]
+height = 0.85
+radius = 0.1
+
+[node name="ITM_Arrow" type="RigidBody3D"]
+mass = 0.1
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_wofgb")
+
+[node name="MDL_Arrow" parent="." instance=ExtResource("1_3m0t2")]
+transform = Transform3D(-4.37114e-08, 0, -5, 0, 5, 0, 1, 0, -2.18557e-07, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, -0.41962)
+shape = SubResource("CylinderShape3D_ymeem")
