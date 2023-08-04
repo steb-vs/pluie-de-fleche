@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cin1kdk0lpkoo"]
+
+[ext_resource type="Script" path="res://systems/NDE_city_system.gd" id="1_wdokr"]
+
+[node name="NDE_city_system" type="Node"]
+script = ExtResource("1_wdokr")
+
+[node name="TMR_regen" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TMR_regen" to="." method="_on_tmr_regen_timeout"]

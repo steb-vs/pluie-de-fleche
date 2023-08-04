@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvaxeryy0gy1s"]
+[gd_scene load_steps=11 format=3 uid="uid://cvaxeryy0gy1s"]
 
 [ext_resource type="Script" path="res://scenes/devmap_jam/test.gd" id="1_nkut2"]
+[ext_resource type="PackedScene" uid="uid://cin1kdk0lpkoo" path="res://systems/NDE_city_system.tscn" id="2_ns3do"]
 [ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="3_3d7p6"]
 [ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="3_4t7mj"]
+[ext_resource type="PackedScene" uid="uid://dq0ebhjo5106d" path="res://GUI/screens/HUD/hud.tscn" id="3_mxdkv"]
 [ext_resource type="Resource" uid="uid://dfnn505tq0t6" path="res://game_object/vague/wave_1.tres" id="4_jmkd2"]
 [ext_resource type="Resource" uid="uid://dmxgnck8ri62o" path="res://game_object/vague/wave_2.tres" id="5_bpacm"]
 
@@ -17,6 +19,10 @@ size = Vector2(18, 60)
 
 [node name="test" type="Node3D"]
 script = ExtResource("1_nkut2")
+
+[node name="NDE_city_system" parent="." instance=ExtResource("2_ns3do")]
+
+[node name="HUD" parent="." instance=ExtResource("3_mxdkv")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.984808, 0.0550994, -0.164675, 0, 0.948324, 0.317305, 0.173648, 0.312484, -0.933917, 3.92119, 8.29582, -37.1364)
