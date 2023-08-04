@@ -110,6 +110,8 @@ radius = 0.4
 
 [node name="CHB_Malemoniak" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47215, 0)
+collision_layer = 16
+collision_mask = 17
 script = ExtResource("1_21l87")
 distance = -28.0
 

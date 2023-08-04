@@ -22,6 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6113, 4.75204, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSG_valley"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.166667, -0.0563362, 0, 0)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_ffs7m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CSG_valley/NavigationRegion3D"]
