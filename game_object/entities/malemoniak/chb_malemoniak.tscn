@@ -1,36 +1,109 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4cn4kw3yp3y1"]
+[gd_scene load_steps=17 format=3 uid="uid://c4cn4kw3yp3y1"]
 
 [ext_resource type="Script" path="res://game_object/entities/malemoniak/chb_malemoniak.gd" id="1_21l87"]
-[ext_resource type="Shader" path="res://game_object/entities/malemoniak/chb_malemoniak.gdshader" id="2_5f5ay"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i6l2a"]
 height = 1.8
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7c7sd"]
+[sub_resource type="Shader" id="Shader_hmkxs"]
+code = "shader_type spatial;
+render_mode diffuse_toon, specular_toon;
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ydhw3"]
-noise = SubResource("FastNoiseLite_7c7sd")
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color;
 
-[sub_resource type="Gradient" id="Gradient_sg7pk"]
+uniform vec4 emission_color : source_color = vec4(1);
+uniform float emission_amount;
+
+uniform sampler2D dissolve_texture;
+uniform float burn_size : hint_range(0,2);
+uniform float dissolve_amount : hint_range(0,1);
+
+
+void fragment() {
+	vec4 albedo_tex = texture(texture_albedo,UV);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	
+	float sample = texture(dissolve_texture, UV).r;
+	float emission_value = 1.0 - smoothstep(dissolve_amount, dissolve_amount + burn_size, sample);
+	EMISSION = vec3(emission_value * emission_amount * emission_color.rgb);
+	ALPHA = smoothstep(dissolve_amount - burn_size, dissolve_amount, sample);
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8xal0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qwgsi"]
+noise = SubResource("FastNoiseLite_8xal0")
+
+[sub_resource type="Gradient" id="Gradient_feqqw"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6eio"]
-gradient = SubResource("Gradient_sg7pk")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_77yy5"]
+gradient = SubResource("Gradient_feqqw")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gto5x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okbiw"]
+resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2_5f5ay")
+shader = SubResource("Shader_hmkxs")
 shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/emission_color = Color(0.870588, 0.647059, 0.172549, 1)
 shader_parameter/emission_amount = 10.0
 shader_parameter/burn_size = 0.01
 shader_parameter/dissolve_amount = 0.0
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_a6eio")
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_ydhw3")
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_77yy5")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_qwgsi")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vx2f4"]
 height = 1.0
 radius = 0.4
+
+[sub_resource type="Shader" id="Shader_8hl5p"]
+code = "shader_type spatial;
+render_mode diffuse_toon, specular_toon;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color;
+
+uniform vec4 emission_color : source_color = vec4(1);
+uniform float emission_amount;
+
+uniform sampler2D dissolve_texture;
+uniform float burn_size : hint_range(0,2);
+uniform float dissolve_amount : hint_range(0,1);
+
+
+void fragment() {
+	vec4 albedo_tex = texture(texture_albedo,UV);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	
+	float sample = texture(dissolve_texture, UV).r;
+	float emission_value = 1.0 - smoothstep(dissolve_amount, dissolve_amount + burn_size, sample);
+	EMISSION = vec3(emission_value * emission_amount * emission_color.rgb);
+	ALPHA = smoothstep(dissolve_amount - burn_size, dissolve_amount, sample);
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vsc85"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tbsid"]
+noise = SubResource("FastNoiseLite_vsc85")
+
+[sub_resource type="Gradient" id="Gradient_yclrf"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8d11m"]
+gradient = SubResource("Gradient_yclrf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62mo1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_8hl5p")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/emission_color = Color(0.870588, 0.647059, 0.172549, 1)
+shader_parameter/emission_amount = 10.0
+shader_parameter/burn_size = 0.01
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_8d11m")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_tbsid")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4i7rj"]
 radius = 0.4
@@ -38,6 +111,7 @@ radius = 0.4
 [node name="CHB_Malemoniak" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47215, 0)
 script = ExtResource("1_21l87")
+distance = -28.0
 
 [node name="CLS_Character" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325239, 0)
@@ -46,7 +120,7 @@ shape = SubResource("CapsuleShape3D_i6l2a")
 [node name="CSG_Body" type="CSGCylinder3D" parent="."]
 radius = 0.4
 height = 1.0
-material = SubResource("ShaderMaterial_gto5x")
+material = SubResource("ShaderMaterial_okbiw")
 
 [node name="A3D_HurtBoxBody" type="Area3D" parent="."]
 
@@ -56,7 +130,7 @@ shape = SubResource("CylinderShape3D_vx2f4")
 [node name="CSG_Head" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.788117, 0)
 radius = 0.4
-material = SubResource("ShaderMaterial_gto5x")
+material = SubResource("ShaderMaterial_62mo1")
 
 [node name="A3D_HurtBoxHead" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78779, 0)
@@ -65,3 +139,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78779, 0)
 shape = SubResource("SphereShape3D_4i7rj")
 
 [node name="NVA" type="NavigationAgent3D" parent="."]
+
+[connection signal="navigation_finished" from="NVA" to="." method="_on_nva_navigation_finished"]

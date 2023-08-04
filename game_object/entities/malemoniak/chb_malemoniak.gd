@@ -27,8 +27,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
-	nav_agent.path_desired_distance = 0.5
-	nav_agent.target_desired_distance = 0.5
+	nav_agent.path_desired_distance = 1
+	nav_agent.target_desired_distance = 1
 	movement_target_position = Vector3(global_position.x, 0, distance)
 	call_deferred("actor_setup")
 
@@ -82,3 +82,8 @@ func death() -> void:
 
 func _set_shader_dissolve_value(value):
 	model_body.material.set_shader_parameter("dissolve_amount", value)
+	model_head.material.set_shader_parameter("dissolve_amount", value)
+
+
+func _on_nva_navigation_finished():
+	death()

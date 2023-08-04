@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvaxeryy0gy1s"]
 
 [ext_resource type="Script" path="res://scenes/devmap_jam/test.gd" id="1_nkut2"]
+[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="3_3d7p6"]
 [ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="3_4t7mj"]
-[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/a_3d_spawner.tscn" id="3_vesr4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
 vertices = PackedVector3Array(8.5, 0.5, -22.25, 8.5, 0.5, -29.5, 0, 0.5, -29.5, 0, 0.5, -29.5, -8.5, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, 22, -8.5, 0.5, 29.5, 0, 0.5, 29.5, 0, 0.5, 29.5, 8.5, 0.5, 29.5, 8.5, 0.5, 22, -8.5, 0.5, 22, 0, 0.5, 29.5, 8.5, 0.5, 22, 8.5, 0.5, 14.75, -8.5, 0.5, 14.75, 8.5, 0.5, -22.25, 0, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, -14.75, 8.5, 0.5, -14.75, -8.5, 0.5, -7.5, -8.5, 0.5, 0, 8.5, 0.5, 0, 8.5, 0.5, -7.5, -8.5, 0.5, -14.75, -8.5, 0.5, -7.5, 8.5, 0.5, -7.5, 8.5, 0.5, -14.75, -8.5, 0.5, 7.25, -8.5, 0.5, 14.75, 8.5, 0.5, 14.75, 8.5, 0.5, 7.25, -8.5, 0.5, 0, -8.5, 0.5, 7.25, 8.5, 0.5, 7.25, 8.5, 0.5, 0)
@@ -17,12 +17,13 @@ size = Vector2(18, 60)
 script = ExtResource("1_nkut2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.992899, -0.0377815, 0.112799, 0, 0.948224, 0.317603, -0.118959, -0.315347, 0.941491, 3.92119, 8.29582, 21.047)
+transform = Transform3D(-0.984808, 0.0550994, -0.164675, 0, 0.948324, 0.317305, 0.173648, 0.312484, -0.933917, 3.92119, 8.29582, -37.1364)
 
 [node name="CSG_valley" parent="." instance=ExtResource("3_4t7mj")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSG_valley"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.166667, -0.0563362, 0, 0)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_ffs7m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CSG_valley/NavigationRegion3D"]
@@ -37,4 +38,4 @@ environment = SubResource("Environment_ttq1c")
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -28)
 
-[node name="A3D_Spawner" parent="." instance=ExtResource("3_vesr4")]
+[node name="PTH_Spawner" parent="." instance=ExtResource("3_3d7p6")]
