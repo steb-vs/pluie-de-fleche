@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0d724nquytkd"]
+[gd_scene load_steps=3 format=3 uid="uid://b0d724nquytkd"]
 
 [ext_resource type="Script" path="res://game_object/spawner/pth_spawner.gd" id="1_btnc7"]
-[ext_resource type="PackedScene" uid="uid://c4cn4kw3yp3y1" path="res://game_object/entities/malemoniak/chb_malemoniak.tscn" id="2_2n75t"]
 
 [sub_resource type="Curve3D" id="Curve3D_dwg05"]
 _data = {
@@ -14,13 +13,16 @@ point_count = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27.7833)
 curve = SubResource("Curve3D_dwg05")
 script = ExtResource("1_btnc7")
-malemoniak = ExtResource("2_2n75t")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
 
 [node name="PTF_Locations" type="PathFollow3D" parent="."]
 transform = Transform3D(-0.00584758, 0, -0.999983, 0, 1, 0, 0.999983, 0, -0.00584758, -8.98274, 0, 1.52167)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="TMR_SpawnTime" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="TMR_RestTime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="TMR_SpawnTime" to="." method="_on_tmr_spawn_time_timeout"]
+[connection signal="timeout" from="TMR_RestTime" to="." method="_on_tmr_rest_time_timeout"]

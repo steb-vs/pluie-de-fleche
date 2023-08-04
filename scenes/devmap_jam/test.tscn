@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvaxeryy0gy1s"]
+[gd_scene load_steps=9 format=3 uid="uid://cvaxeryy0gy1s"]
 
 [ext_resource type="Script" path="res://scenes/devmap_jam/test.gd" id="1_nkut2"]
 [ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="3_3d7p6"]
 [ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="3_4t7mj"]
+[ext_resource type="Resource" uid="uid://dfnn505tq0t6" path="res://game_object/vague/wave_1.tres" id="4_jmkd2"]
+[ext_resource type="Resource" uid="uid://dmxgnck8ri62o" path="res://game_object/vague/wave_2.tres" id="5_bpacm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
 vertices = PackedVector3Array(8.5, 0.5, -22.25, 8.5, 0.5, -29.5, 0, 0.5, -29.5, 0, 0.5, -29.5, -8.5, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, 22, -8.5, 0.5, 29.5, 0, 0.5, 29.5, 0, 0.5, 29.5, 8.5, 0.5, 29.5, 8.5, 0.5, 22, -8.5, 0.5, 22, 0, 0.5, 29.5, 8.5, 0.5, 22, 8.5, 0.5, 14.75, -8.5, 0.5, 14.75, 8.5, 0.5, -22.25, 0, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, -14.75, 8.5, 0.5, -14.75, -8.5, 0.5, -7.5, -8.5, 0.5, 0, 8.5, 0.5, 0, 8.5, 0.5, -7.5, -8.5, 0.5, -14.75, -8.5, 0.5, -7.5, 8.5, 0.5, -7.5, 8.5, 0.5, -14.75, -8.5, 0.5, 7.25, -8.5, 0.5, 14.75, 8.5, 0.5, 14.75, 8.5, 0.5, 7.25, -8.5, 0.5, 0, -8.5, 0.5, 7.25, 8.5, 0.5, 7.25, 8.5, 0.5, 0)
@@ -39,3 +41,4 @@ environment = SubResource("Environment_ttq1c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -28)
 
 [node name="PTH_Spawner" parent="." instance=ExtResource("3_3d7p6")]
+waves = Array[Resource("res://custom_resources/wave.gd")]([ExtResource("4_jmkd2"), ExtResource("5_bpacm")])

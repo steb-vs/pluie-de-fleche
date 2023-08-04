@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=3 format=3 uid="uid://dfnn505tq0t6"]
+
+[ext_resource type="PackedScene" uid="uid://c4cn4kw3yp3y1" path="res://game_object/entities/malemoniak/chb_malemoniak.tscn" id="1_aicce"]
+[ext_resource type="Script" path="res://custom_resources/wave.gd" id="1_oc3o1"]
+
+[resource]
+script = ExtResource("1_oc3o1")
+number_wave = 1
+monster_type = ExtResource("1_aicce")
+max_spawn_number = 5
+interval_of_spawn = 1.0
+size_of_group = 1
