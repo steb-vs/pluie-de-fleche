@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dswepbr3is2u7"]
+[gd_scene load_steps=7 format=3 uid="uid://dswepbr3is2u7"]
 
 [ext_resource type="Texture2D" uid="uid://daevg2704r27p" path="res://icon.svg" id="1_4xs1w"]
 [ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="1_87g4i"]
 [ext_resource type="PackedScene" uid="uid://be4s1fm7846ju" path="res://game_object/entities/npc/npc_mahaut.tscn" id="3_jgxrj"]
+[ext_resource type="PackedScene" uid="uid://c4cn4kw3yp3y1" path="res://game_object/entities/malemoniak/chb_malemoniak.tscn" id="4_pnbh8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bsgs"]
 albedo_texture = ExtResource("1_4xs1w")
@@ -30,3 +31,6 @@ transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.70710
 
 [node name="NPC_Mahaut" parent="." instance=ExtResource("3_jgxrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491375, -4.09718)
+
+[node name="CHB_Malemoniak" parent="." instance=ExtResource("4_pnbh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43266, 0.68238, 6.5724)

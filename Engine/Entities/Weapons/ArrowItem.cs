@@ -16,17 +16,20 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 		private Node _malemoniak;
 		private bool _hasHit;
 		private bool _isAttached;
+		private ArrowArea _area;
 
 		public override void _Ready()
 		{
 			BodyEntered += ArrowItem_BodyEntered;
+			_area = GetNode<ArrowArea>("./Area3D");
+
 		}
 
 		private void ArrowItem_BodyEntered(Node body)
 		{
 			_hasHit = true;
 
-			if(body.GDTypeIs("chb_malemoniak"))
+			if(body.GDTypeIs("chb_malemoniak") == true && _area.HasHit)
 			{
 				_malemoniak = body;
 			}

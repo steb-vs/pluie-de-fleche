@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh4odhye4f6b6"]
+[gd_scene load_steps=12 format=3 uid="uid://dh4odhye4f6b6"]
 
 [ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="1_dbp7y"]
+[ext_resource type="Script" path="res://scenes/map_main/scn_main.gd" id="1_dk0tg"]
+[ext_resource type="PackedScene" uid="uid://dq0ebhjo5106d" path="res://GUI/screens/HUD/hud.tscn" id="1_ok42y"]
 [ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="2_6frqu"]
-[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="3_ttmi4"]
+[ext_resource type="PackedScene" uid="uid://cin1kdk0lpkoo" path="res://systems/NDE_city_system.tscn" id="2_35fyo"]
+[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="5_sb8wi"]
+[ext_resource type="Resource" uid="uid://dfnn505tq0t6" path="res://game_object/vague/wave_1.tres" id="6_noa6t"]
+[ext_resource type="Resource" uid="uid://dmxgnck8ri62o" path="res://game_object/vague/wave_2.tres" id="7_3kt8s"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
 vertices = PackedVector3Array(8.5, 0.5, -22.25, 8.5, 0.5, -29.5, 0, 0.5, -29.5, 0, 0.5, -29.5, -8.5, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, 22, -8.5, 0.5, 29.5, 0, 0.5, 29.5, 0, 0.5, 29.5, 8.5, 0.5, 29.5, 8.5, 0.5, 22, -8.5, 0.5, 22, 0, 0.5, 29.5, 8.5, 0.5, 22, 8.5, 0.5, 14.75, -8.5, 0.5, 14.75, 8.5, 0.5, -22.25, 0, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, -14.75, 8.5, 0.5, -14.75, -8.5, 0.5, -7.5, -8.5, 0.5, 0, 8.5, 0.5, 0, 8.5, 0.5, -7.5, -8.5, 0.5, -14.75, -8.5, 0.5, -7.5, 8.5, 0.5, -7.5, 8.5, 0.5, -14.75, -8.5, 0.5, 7.25, -8.5, 0.5, 14.75, 8.5, 0.5, 14.75, 8.5, 0.5, 7.25, -8.5, 0.5, 0, -8.5, 0.5, 7.25, 8.5, 0.5, 7.25, 8.5, 0.5, 0)
@@ -14,6 +19,11 @@ size = Vector2(18, 60)
 [sub_resource type="Environment" id="Environment_ttq1c"]
 
 [node name="SCN_Main" type="Node3D"]
+script = ExtResource("1_dk0tg")
+
+[node name="HUD" parent="." instance=ExtResource("1_ok42y")]
+
+[node name="NDE_city_system" parent="." instance=ExtResource("2_35fyo")]
 
 [node name="ENT_Player" parent="." instance=ExtResource("1_dbp7y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6113, 4.75204, 0)
@@ -37,4 +47,5 @@ environment = SubResource("Environment_ttq1c")
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -28)
 
-[node name="PTH_Spawner" parent="." instance=ExtResource("3_ttmi4")]
+[node name="PTH_Spawner" parent="." instance=ExtResource("5_sb8wi")]
+waves = Array[Resource("res://custom_resources/wave.gd")]([ExtResource("6_noa6t"), ExtResource("7_3kt8s")])
