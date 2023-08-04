@@ -32,6 +32,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	damage_city.connect(EventBus._on_malemoniak_damage_city)
 	
+	random_speed()
+	
 	nav_agent.path_desired_distance = 1
 	nav_agent.target_desired_distance = 1
 	movement_target_position = Vector3(global_position.x, 0, distance)
@@ -89,6 +91,10 @@ func death() -> void:
 func attack_city() -> void:
 	damage_city.emit(damage)
 	death()
+
+func random_speed():
+	movement_speed = randf_range(movement_speed - 2, movement_speed + 2)
+
 
 func _set_shader_dissolve_value(value):
 	model_body.material.set_shader_parameter("dissolve_amount", value)
