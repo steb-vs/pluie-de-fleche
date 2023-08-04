@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal damage_city(damage : int)
+
 @onready var model_head = $CSG_Head
 @onready var model_body = $CSG_Body
 
@@ -9,6 +11,7 @@ extends CharacterBody3D
 var movement_speed : float = 5.0
 @export var distance : float
 var movement_target_position : Vector3
+@export var damage : int = 5
 
 @onready var nav_agent : NavigationAgent3D = $NVA
 
@@ -27,6 +30,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
+	damage_city.connect(EventBus._on_malemoniak_damage_city)
+	
 	nav_agent.path_desired_distance = 1
 	nav_agent.target_desired_distance = 1
 	movement_target_position = Vector3(global_position.x, 0, distance)
@@ -80,10 +85,15 @@ func death() -> void:
 	await tween.finished
 	queue_free()
 
+
+func attack_city() -> void:
+	damage_city.emit(damage)
+	death()
+
 func _set_shader_dissolve_value(value):
 	model_body.material.set_shader_parameter("dissolve_amount", value)
 	model_head.material.set_shader_parameter("dissolve_amount", value)
 
 
 func _on_nva_navigation_finished():
-	death()
+	attack_city()

@@ -14,15 +14,23 @@ var regen_per_sec : int = 1
 
 func _ready():
 	health_changed.connect(EventBus._on_city_health_changed)
-	hit_points = 300
-	regen_per_sec = 50
+	EventBus.malemoniak_damage_city.connect(_on_malemoniak_damage_city)
+	hit_points = 950
 
 
 
 
-func regen():
+func regen() -> void:
 	hit_points += regen_per_sec
 
 
-func _on_tmr_regen_timeout():
+func _on_tmr_regen_timeout() -> void:
 	regen()
+	print(hit_points)
+
+
+func _on_malemoniak_damage_city(damage : int) -> void:
+	take_damage(damage)
+
+func take_damage(amount : int) -> void:
+	hit_points -= amount
