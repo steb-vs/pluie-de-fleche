@@ -9,7 +9,7 @@ namespace PluieDeFleche.Engine.Common.Extensions
 {
     internal static class NodeExtensions
     {
-        public static bool GDTypeOf(this Node node, string scriptName)
+        public static bool GDTypeIs(this Node node, string scriptName)
         {
             return node.GetScript().Obj is GDScript gdScript && gdScript.ResourcePath.EndsWith("/" + scriptName + ".gd");
         }

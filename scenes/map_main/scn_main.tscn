@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh4odhye4f6b6"]
+
+[ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="1_dbp7y"]
+[ext_resource type="PackedScene" uid="uid://dr7wn4kmqrurg" path="res://game_object/map/csg_valley.tscn" id="2_6frqu"]
+[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="3_ttmi4"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
+vertices = PackedVector3Array(8.5, 0.5, -22.25, 8.5, 0.5, -29.5, 0, 0.5, -29.5, 0, 0.5, -29.5, -8.5, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, 22, -8.5, 0.5, 29.5, 0, 0.5, 29.5, 0, 0.5, 29.5, 8.5, 0.5, 29.5, 8.5, 0.5, 22, -8.5, 0.5, 22, 0, 0.5, 29.5, 8.5, 0.5, 22, 8.5, 0.5, 14.75, -8.5, 0.5, 14.75, 8.5, 0.5, -22.25, 0, 0.5, -29.5, -8.5, 0.5, -22.25, -8.5, 0.5, -14.75, 8.5, 0.5, -14.75, -8.5, 0.5, -7.5, -8.5, 0.5, 0, 8.5, 0.5, 0, 8.5, 0.5, -7.5, -8.5, 0.5, -14.75, -8.5, 0.5, -7.5, 8.5, 0.5, -7.5, 8.5, 0.5, -14.75, -8.5, 0.5, 7.25, -8.5, 0.5, 14.75, 8.5, 0.5, 14.75, 8.5, 0.5, 7.25, -8.5, 0.5, 0, -8.5, 0.5, 7.25, 8.5, 0.5, 7.25, 8.5, 0.5, 0)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(12, 16, 13), PackedInt32Array(13, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(17, 21, 18), PackedInt32Array(18, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fooel"]
+size = Vector2(18, 60)
+
+[sub_resource type="Environment" id="Environment_ttq1c"]
+
+[node name="SCN_Main" type="Node3D"]
+
+[node name="ENT_Player" parent="." instance=ExtResource("1_dbp7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6113, 4.75204, 0)
+
+[node name="CSG_valley" parent="." instance=ExtResource("2_6frqu")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSG_valley"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.166667, -0.0563362, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_ffs7m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSG_valley/NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_fooel")
+
+[node name="DL_Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.279058, 0.960274, 0, -0.960274, 0.279058, 0, 17.8164, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttq1c")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -28)
+
+[node name="PTH_Spawner" parent="." instance=ExtResource("3_ttmi4")]

@@ -19,7 +19,7 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 		{
 			Freeze = true;
 
-			if(body.GDTypeOf("chb_malemoniak"))
+			if(body.GDTypeIs("chb_malemoniak"))
 			{
 				body.Call("death");
 			}
