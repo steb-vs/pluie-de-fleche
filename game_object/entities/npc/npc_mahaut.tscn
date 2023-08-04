@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://be4s1fm7846ju"]
+
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcEntity.cs" id="1_lsjyf"]
+[ext_resource type="PackedScene" uid="uid://dral330bsqky8" path="res://models/npcs/mahaut/mdl_mahaut.tscn" id="2_7mhxk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnota"]
+radius = 0.2
+height = 1.7
+
+[node name="NPC_Mahaut" type="CharacterBody3D"]
+script = ExtResource("1_lsjyf")
+
+[node name="MDL_Mahaut" parent="." instance=ExtResource("2_7mhxk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_bnota")
