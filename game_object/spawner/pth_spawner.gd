@@ -1,4 +1,5 @@
 extends Path3D
+class_name Spawner
 
 @export var waves : Array[Wave]
 @export var rest_time_between_waves : float = 5.0
