@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://cysrfpwm0ykgh"]
 
-[node name="PGB_city_life" type="ProgressBar"]
+[node name="PGB_CityLife" type="ProgressBar"]
 offset_right = 336.0
 offset_bottom = 27.0

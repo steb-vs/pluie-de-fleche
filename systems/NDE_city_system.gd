@@ -1,6 +1,7 @@
 extends Node
 
 signal health_changed(hit_points : int, max_hitpoints : int)
+signal fame_changed(player_fame : int)
 
 var max_hit_points : int = 1000
 var hit_points : int = max_hit_points:
@@ -12,8 +13,17 @@ var hit_points : int = max_hit_points:
 
 var regen_per_sec : int = 1
 
+var player_fame : int = 0:
+	get:
+		return player_fame
+	set(value):
+		player_fame = value
+		fame_changed.emit(player_fame)
+
+
 func _ready():
 	health_changed.connect(EventBus._on_city_health_changed)
+	fame_changed.connect(EventBus._on_city_fame_changed)
 	EventBus.malemoniak_damage_city.connect(_on_malemoniak_damage_city)
 	hit_points = 950
 
@@ -26,7 +36,6 @@ func regen() -> void:
 
 func _on_tmr_regen_timeout() -> void:
 	regen()
-	print(hit_points)
 
 
 func _on_malemoniak_damage_city(damage : int) -> void:

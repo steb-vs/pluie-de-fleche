@@ -20,9 +20,9 @@ size = Vector2(18, 60)
 [node name="test" type="Node3D"]
 script = ExtResource("1_nkut2")
 
-[node name="NDE_city_system" parent="." instance=ExtResource("2_ns3do")]
-
 [node name="HUD" parent="." instance=ExtResource("3_mxdkv")]
+
+[node name="NDE_city_system" parent="." instance=ExtResource("2_ns3do")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.984808, 0.0550994, -0.164675, 0, 0.948324, 0.317305, 0.173648, 0.312484, -0.933917, 3.92119, 8.29582, -37.1364)

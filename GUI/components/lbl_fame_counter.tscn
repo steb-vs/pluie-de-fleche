@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bn4n5gt2ho5y1"]
+
+[node name="LBL_FameCounter" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
