@@ -71,7 +71,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func taking_damage(amount : int) -> void:
+func take_damage(amount : int) -> void:
 	hit_points -= amount
 	print(hit_points)
 

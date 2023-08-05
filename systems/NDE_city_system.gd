@@ -41,5 +41,6 @@ func _on_tmr_regen_timeout() -> void:
 func _on_malemoniak_damage_city(damage : int) -> void:
 	take_damage(damage)
 
+
 func take_damage(amount : int) -> void:
 	hit_points -= amount
