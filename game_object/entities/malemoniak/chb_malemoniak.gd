@@ -1,6 +1,8 @@
 extends CharacterBody3D
+class_name Malemoniak
 
 signal damage_city(damage : int)
+signal killed(fame_bounty : int)
 
 @onready var model_head = $CSG_Head
 @onready var model_body = $CSG_Body
@@ -9,9 +11,9 @@ signal damage_city(damage : int)
 @onready var hurt_box_head = $A3D_HurtBoxHead
 
 var movement_speed : float = 5.0
-@export var distance : float
-var movement_target_position : Vector3
+@export var movement_target_position : Vector3
 @export var damage : int = 5
+@export var fame_bounty : int = 5
 
 @onready var nav_agent : NavigationAgent3D = $NVA
 
@@ -31,12 +33,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	damage_city.connect(EventBus._on_malemoniak_damage_city)
-	
+	killed.connect(EventBus._on_malemoniak_killed)
 	random_speed()
+	
+	movement_target_position.z = global_position.z
 	
 	nav_agent.path_desired_distance = 1
 	nav_agent.target_desired_distance = 1
-	movement_target_position = Vector3(global_position.x, 0, distance)
 	call_deferred("actor_setup")
 
 
@@ -76,9 +79,15 @@ func take_damage(amount : int) -> void:
 	print(hit_points)
 
 
+func kill() -> void: #When killed by player
+	killed.emit(fame_bounty)
+	death()
+
+
 func death() -> void:
 	hurt_box_body.monitorable = false
 	hurt_box_head.monitorable = false
+	movement_speed = 0.0
 	
 	var tween = get_tree().create_tween()
 	var duration : float = 1.0
@@ -88,9 +97,14 @@ func death() -> void:
 	queue_free()
 
 
+func victory():
+	queue_free()
+
+
 func attack_city() -> void:
 	damage_city.emit(damage)
-	death()
+	victory()
+
 
 func random_speed():
 	movement_speed = randf_range(movement_speed - 2, movement_speed + 2)
@@ -102,4 +116,5 @@ func _set_shader_dissolve_value(value):
 
 
 func _on_nva_navigation_finished():
+	print("nva_finished")
 	attack_city()

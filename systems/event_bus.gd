@@ -13,3 +13,8 @@ func _on_city_fame_changed(player_fame : int):
 signal malemoniak_damage_city(damage : int)
 func _on_malemoniak_damage_city(damage : int):
 	malemoniak_damage_city.emit(damage)
+
+
+signal malemoniak_killed(bounty_fame : int)
+func _on_malemoniak_killed(bounty_fame : int):
+	malemoniak_killed.emit(bounty_fame)

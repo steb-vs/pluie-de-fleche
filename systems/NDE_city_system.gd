@@ -25,6 +25,7 @@ func _ready():
 	health_changed.connect(EventBus._on_city_health_changed)
 	fame_changed.connect(EventBus._on_city_fame_changed)
 	EventBus.malemoniak_damage_city.connect(_on_malemoniak_damage_city)
+	EventBus.malemoniak_killed.connect(_on_malemoniak_killed)
 	hit_points = 950
 
 
@@ -44,3 +45,7 @@ func _on_malemoniak_damage_city(damage : int) -> void:
 
 func take_damage(amount : int) -> void:
 	hit_points -= amount
+
+
+func _on_malemoniak_killed(bounty_fame : int) -> void:
+	player_fame += bounty_fame

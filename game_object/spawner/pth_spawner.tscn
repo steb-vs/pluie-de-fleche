@@ -4,7 +4,7 @@
 
 [sub_resource type="Curve3D" id="Curve3D_dwg05"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.98274, 0, 1.52167, 0, 0, 0, 0, 0, 0, 7.80467, 0, 1.61984),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.57774, 0.555908, 5.86269, 0, 0, 0, 0, 0, 0, -1.31902, 0.673804, -6.683),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -15,7 +15,7 @@ curve = SubResource("Curve3D_dwg05")
 script = ExtResource("1_btnc7")
 
 [node name="PTF_Locations" type="PathFollow3D" parent="."]
-transform = Transform3D(-0.00584758, 0, -0.999983, 0, 1, 0, 0.999983, 0, -0.00584758, -8.98274, 0, 1.52167)
+transform = Transform3D(0.998259, 0.000553293, 0.0589806, 8.73115e-11, 0.999956, -0.00938051, -0.0589832, 0.00936418, 0.998215, -0.57774, 0.555908, 5.86269)
 
 [node name="TMR_SpawnTime" type="Timer" parent="."]
 wait_time = 0.1
