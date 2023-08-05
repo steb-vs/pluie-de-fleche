@@ -1,0 +1,80 @@
+[gd_scene load_steps=21 format=3 uid="uid://b3vn610jq8hjj"]
+
+[ext_resource type="Script" path="res://scenes/map_main/scn_main.gd" id="1_7b5yb"]
+[ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="2_74nm5"]
+[ext_resource type="PackedScene" uid="uid://dq0ebhjo5106d" path="res://GUI/screens/HUD/hud.tscn" id="2_qcaax"]
+[ext_resource type="PackedScene" uid="uid://cin1kdk0lpkoo" path="res://systems/NDE_city_system.tscn" id="3_n7o8h"]
+[ext_resource type="Shader" path="res://scenes/map_main/skybox.gdshader" id="5_45w32"]
+[ext_resource type="Texture2D" uid="uid://c4eclnx7k275b" path="res://models/skybox/Epic_GloriousPink_EquiRect.png" id="6_fchfi"]
+[ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="7_4srd2"]
+[ext_resource type="Resource" uid="uid://dfnn505tq0t6" path="res://game_object/vague/wave_1.tres" id="8_50td8"]
+[ext_resource type="Resource" uid="uid://dmxgnck8ri62o" path="res://game_object/vague/wave_2.tres" id="9_uwu42"]
+[ext_resource type="Resource" path="res://game_object/vague/wave_3.tres" id="10_pf36s"]
+[ext_resource type="Resource" path="res://game_object/vague/wave_4.tres" id="11_x2xmd"]
+[ext_resource type="Resource" path="res://game_object/vague/wave_5.tres" id="12_po0sj"]
+[ext_resource type="PackedScene" uid="uid://difcmms6260yt" path="res://game_object/despawner/a3d_despawner.tscn" id="13_otfuh"]
+[ext_resource type="PackedScene" uid="uid://c1hur8xtqfsk" path="res://models/valley_of_death/valley_de_la_mort_collision.tscn" id="14_ixihm"]
+[ext_resource type="PackedScene" uid="uid://be4s1fm7846ju" path="res://game_object/entities/npc/npc_mahaut.tscn" id="15_a3y37"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfex8"]
+shader = ExtResource("5_45w32")
+shader_parameter/skyColor = Color(1, 0, 0, 1)
+shader_parameter/skyTexture = ExtResource("6_fchfi")
+
+[sub_resource type="Sky" id="Sky_bs83l"]
+sky_material = SubResource("ShaderMaterial_xfex8")
+
+[sub_resource type="Environment" id="Environment_ttq1c"]
+background_mode = 2
+sky = SubResource("Sky_bs83l")
+ambient_light_source = 3
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
+vertices = PackedVector3Array(-76.696, 1.24878, -2.46274, -76.696, 1.24878, 4.28726, -66.196, 1.24878, 4.28726, -66.196, 1.24878, -9.21274, -76.696, 1.24878, -9.21274, -76.696, 1.24878, -2.46274, -2.446, 1.24878, 4.28726, 8.304, 1.24878, 4.28726, 8.304, 1.24878, -2.46274, 8.304, 1.24878, -2.46274, 8.304, 1.24878, -9.21274, -2.446, 1.24878, -9.21274, -2.446, 1.24878, 4.28726, 8.304, 1.24878, -2.46274, -2.446, 1.24878, -9.21274, -12.946, 1.24878, -9.21274, -12.946, 1.24878, 4.28726, -66.196, 1.24878, -9.21274, -76.696, 1.24878, -2.46274, -66.196, 1.24878, 4.28726, -55.446, 1.24878, 4.28726, -55.446, 1.24878, -9.21274, -44.946, 1.24878, 4.28726, -34.196, 1.24878, 4.28726, -34.196, 1.24878, -9.21274, -44.946, 1.24878, -9.21274, -55.446, 1.24878, 4.28726, -44.946, 1.24878, 4.28726, -44.946, 1.24878, -9.21274, -55.446, 1.24878, -9.21274, -23.696, 1.24878, 4.28726, -12.946, 1.24878, 4.28726, -12.946, 1.24878, -9.21274, -23.696, 1.24878, -9.21274, -34.196, 1.24878, 4.28726, -23.696, 1.24878, 4.28726, -23.696, 1.24878, -9.21274, -34.196, 1.24878, -9.21274)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 21), PackedInt32Array(19, 21, 20), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fooel"]
+size = Vector2(86, 14.5)
+
+[node name="SCN_Main" type="Node3D"]
+script = ExtResource("1_7b5yb")
+
+[node name="ENT_Player" parent="." instance=ExtResource("2_74nm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7654, 6.08022, 7.4145)
+
+[node name="HUD" parent="." instance=ExtResource("2_qcaax")]
+
+[node name="NDE_city_system" parent="." instance=ExtResource("3_n7o8h")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.279058, 0.960274, 0, -0.960274, 0.279058, 0, 17.8164, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttq1c")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, 0)
+
+[node name="PTH_Spawner" parent="." instance=ExtResource("7_4srd2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29192, 0, -1.92143)
+waves = Array[Resource("res://custom_resources/wave.gd")]([ExtResource("8_50td8"), ExtResource("9_uwu42"), ExtResource("10_pf36s"), ExtResource("11_x2xmd"), ExtResource("12_po0sj")])
+rest_time_between_waves = 10.0
+
+[node name="A3D_Despawner" parent="." instance=ExtResource("13_otfuh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75.3467, 0, -4.78614)
+
+[node name="valley_de_la_mort" parent="." instance=ExtResource("14_ixihm")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="valley_de_la_mort"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563362, 0, 0)
+visible = false
+navigation_mesh = SubResource("NavigationMesh_ffs7m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="valley_de_la_mort/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.196, 0.748778, -2.46274)
+mesh = SubResource("PlaneMesh_fooel")
+
+[node name="NPC" type="Node3D" parent="."]
+
+[node name="NPC_Mahaut" parent="." instance=ExtResource("15_a3y37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 5, 5.66011)

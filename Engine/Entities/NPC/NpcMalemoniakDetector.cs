@@ -28,7 +28,12 @@ namespace PluieDeFleche.Engine.Entities.NPC
             }
 
             _data.AvailableTargets.Remove(body);
-            _data.CurrentTarget = null;
+            
+            if(_data.CurrentTarget == body)
+            {
+                _data.CurrentTarget = null;
+                _data.NextTargetTimer = 0.0d;
+            }
         }
 
         private void NpcMalemoniakDetector_BodyEntered(Node3D body)

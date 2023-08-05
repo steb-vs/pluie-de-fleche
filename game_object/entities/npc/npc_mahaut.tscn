@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Engine/Entities/NPC/NpcData.cs" id="3_iycny"]
 [ext_resource type="Script" path="res://Engine/Entities/NPC/NpcMalemoniakDetector.cs" id="5_v3rjj"]
 
-[sub_resource type="Resource" id="Resource_486y2"]
+[sub_resource type="Resource" id="Resource_blqdn"]
+resource_local_to_scene = true
 script = ExtResource("2_cdugo")
 MinRange = 2.0
 MaxRange = 10.0
@@ -15,13 +16,16 @@ MaxArrow = 5
 FireRate = 3.0
 Spread = 0.05
 ArrowDamage = 2
+NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_6xp72"]
+[sub_resource type="Resource" id="Resource_13ytn"]
+resource_local_to_scene = true
 script = ExtResource("3_iycny")
 AvailableTargets = null
 FireCount = 0
 FireTargetCount = 0
 FireTimer = 0.0
+NextTargetTimer = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnota"]
 radius = 0.4
@@ -33,8 +37,8 @@ size = Vector3(30, 30, 30)
 [node name="NPC_Mahaut" type="CharacterBody3D"]
 collision_layer = 4
 script = ExtResource("1_lsjyf")
-Parameters = SubResource("Resource_486y2")
-Data = SubResource("Resource_6xp72")
+Parameters = SubResource("Resource_blqdn")
+Data = SubResource("Resource_13ytn")
 
 [node name="MDL_Mahaut" parent="." instance=ExtResource("2_7mhxk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

@@ -24,5 +24,8 @@ namespace PluieDeFleche.Engine.Entities.NPC
 
         [Export]
         public double FireTimer { get; set; }
+
+        [Export]
+        public double NextTargetTimer { get; set; }
     }
 }

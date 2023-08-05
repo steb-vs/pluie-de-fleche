@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs85avyhlrhvh"]
+[gd_scene load_steps=25 format=3 uid="uid://dh4odhye4f6b6"]
 
 [ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="1_dbp7y"]
 [ext_resource type="Script" path="res://scenes/map_main/scn_main.gd" id="1_dk0tg"]
@@ -10,11 +10,13 @@
 [ext_resource type="Resource" uid="uid://dmxgnck8ri62o" path="res://game_object/vague/wave_2.tres" id="6_hl5xh"]
 [ext_resource type="Texture2D" uid="uid://c4eclnx7k275b" path="res://models/skybox/Epic_GloriousPink_EquiRect.png" id="6_pdox0"]
 [ext_resource type="PackedScene" uid="uid://difcmms6260yt" path="res://game_object/despawner/a3d_despawner.tscn" id="7_fcy4u"]
-[ext_resource type="Resource" uid="uid://by612v2dc0nfj" path="res://game_object/vague/wave_3.tres" id="8_kx0xk"]
+[ext_resource type="Resource" path="res://game_object/vague/wave_3.tres" id="8_kx0xk"]
 [ext_resource type="PackedScene" uid="uid://c1hur8xtqfsk" path="res://models/valley_of_death/valley_de_la_mort_collision.tscn" id="8_xrhlb"]
-[ext_resource type="Resource" uid="uid://dbyt76e4rajwv" path="res://game_object/vague/wave_4.tres" id="9_g8l4i"]
-[ext_resource type="Resource" uid="uid://6rixq76krgtu" path="res://game_object/vague/wave_5.tres" id="10_r2knn"]
+[ext_resource type="Resource" path="res://game_object/vague/wave_4.tres" id="9_g8l4i"]
+[ext_resource type="Resource" path="res://game_object/vague/wave_5.tres" id="10_r2knn"]
 [ext_resource type="PackedScene" uid="uid://be4s1fm7846ju" path="res://game_object/entities/npc/npc_mahaut.tscn" id="13_kff1p"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcParameters.cs" id="16_urax1"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcData.cs" id="17_5lf6i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfex8"]
 shader = ExtResource("5_7pppp")
@@ -36,6 +38,27 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 [sub_resource type="PlaneMesh" id="PlaneMesh_fooel"]
 size = Vector2(86, 14.5)
 
+[sub_resource type="Resource" id="Resource_7kkak"]
+resource_local_to_scene = true
+script = ExtResource("16_urax1")
+MinRange = 2.0
+MaxRange = 10.0
+MinArrow = 2
+MaxArrow = 5
+FireRate = 3.0
+Spread = 0.05
+ArrowDamage = 2
+NextTargetCoolDown = 1.0
+
+[sub_resource type="Resource" id="Resource_mu81l"]
+resource_local_to_scene = true
+script = ExtResource("17_5lf6i")
+AvailableTargets = null
+FireCount = 0
+FireTargetCount = 0
+FireTimer = 0.0
+NextTargetTimer = 0.0
+
 [node name="SCN_Main" type="Node3D"]
 script = ExtResource("1_dk0tg")
 
@@ -44,7 +67,7 @@ script = ExtResource("1_dk0tg")
 [node name="NDE_city_system" parent="." instance=ExtResource("3_oxdsq")]
 
 [node name="ENT_Player" parent="." instance=ExtResource("1_dbp7y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4532, 6.54513, 4.83862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2429, 5.85699, 6.17915)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.279058, 0.960274, 0, -0.960274, 0.279058, 0, 17.8164, 0)
@@ -77,61 +100,91 @@ mesh = SubResource("PlaneMesh_fooel")
 [node name="NPC" type="Node3D" parent="."]
 
 [node name="NPC_Mahaut" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.0144, 5.64246, -10.9459)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -59.5562, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut2" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7449, 5.48661, -11.4913)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -54.1402, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut3" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.9024, 5.58839, -10.9076)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -48.8853, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut4" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6079, 5.37793, -11.3964)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -43.4612, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut5" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3529, 5.16903, -12.1435)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -38.3751, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut6" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.4504, 5.64246, -10.9459)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -33.4086, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut7" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1809, 5.48661, -11.4913)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.0323, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut8" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.3385, 5.58839, -10.9076)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22.3647, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut9" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.0439, 5.37793, -11.3964)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.4304, 5, -10.4892)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut10" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.7889, 5.16903, -12.1435)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5562, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut11" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6443, 5.64246, 7.83332)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1402, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut12" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.3748, 5.48661, 7.28788)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8853, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut13" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5323, 5.58839, 7.87158)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4612, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut14" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2378, 5.37793, 7.38283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3751, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut15" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.9828, 5.16903, 6.63571)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4086, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut16" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0804, 5.64246, 7.83332)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0323, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut17" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.8109, 5.48661, 7.28788)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3647, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")
 
 [node name="NPC_Mahaut18" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.9684, 5.58839, 7.87158)
-
-[node name="NPC_Mahaut19" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6739, 5.37793, 7.38283)
-
-[node name="NPC_Mahaut20" parent="NPC" instance=ExtResource("13_kff1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.4189, 5.16903, 6.63571)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4304, 5, 5.59699)
+Parameters = SubResource("Resource_7kkak")
+Data = SubResource("Resource_mu81l")

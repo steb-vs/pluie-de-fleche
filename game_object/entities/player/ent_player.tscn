@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgf6vpi3tfeyu"]
+[gd_scene load_steps=12 format=3 uid="uid://bgf6vpi3tfeyu"]
 
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerEntity.cs" id="1_bjbxg"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerParameters.cs" id="2_st623"]
@@ -29,6 +29,16 @@ MouseSensivityY = 1.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6ulo"]
 radius = 0.25
 height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18vcr"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.584314, 0.145098, 0.439216)
+
+[sub_resource type="TorusMesh" id="TorusMesh_jo1kr"]
+material = SubResource("StandardMaterial3D_18vcr")
+inner_radius = 0.125
+outer_radius = 0.147
 
 [node name="ENT_Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -72,6 +82,10 @@ cull_mask = 524288
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.165904, -0.0133188, -0.258539)
 
 [node name="WPN_Bow" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud/N3D_WeaponOrigin" instance=ExtResource("5_ccpm8")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.103513, 0, -2.12986)
+mesh = SubResource("TorusMesh_jo1kr")
 
 [node name="ASP_Footsteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_vv5co")

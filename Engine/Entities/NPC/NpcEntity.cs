@@ -16,11 +16,11 @@ namespace PluieDeFleche.Engine.Entities.NPC
 		[Export]
 		public NpcData Data { get; set; }
 
-		private readonly Random _rnd;
+		private static readonly Random _rnd;
 		private AnimationTree _animTree;
 		private PackedScene _arrowPrefab;
 
-		public NpcEntity()
+		static NpcEntity()
 		{
 			_rnd = new();
 		}
@@ -43,7 +43,19 @@ namespace PluieDeFleche.Engine.Entities.NPC
 				vel.Y = -2.0f;
 			}
 
-			if(Data.CurrentTarget == null && Data.AvailableTargets.Any())
+			if(Data.CurrentTarget != null && (Data.CurrentTarget.IsQueuedForDeletion() || Data.CurrentTarget.Get("hit_points").AsInt32() <= 0))
+			{
+				Data.AvailableTargets.Remove(Data.CurrentTarget);
+				Data.CurrentTarget = null;
+				Data.NextTargetTimer = 0.0d;
+			}
+
+			if(Data.CurrentTarget == null)
+			{
+				Data.NextTargetTimer += delta;
+			}
+
+			if(Data.CurrentTarget == null && Data.NextTargetTimer >= Parameters.NextTargetCoolDown && Data.AvailableTargets.Any())
 			{
 				Vector3 flatPos;
 				List<Node3D> candidates;
@@ -61,8 +73,6 @@ namespace PluieDeFleche.Engine.Entities.NPC
 						flatPos2.Y = 0.0f;
 						dist = Math.Abs(flatPos.Length() - flatPos2.Length());
 
-						GD.Print(dist);
-
 						return dist >= Parameters.MinRange && dist <= Parameters.MaxRange;
 					})
 					.ToList();
@@ -73,7 +83,9 @@ namespace PluieDeFleche.Engine.Entities.NPC
 				}
 			}
 
-			if(Data.CurrentTarget != null)
+			Data.FireTimer += delta;
+
+			if (Data.CurrentTarget != null)
 			{
 				Vector3 dir;
 				Quaternion quat;
@@ -83,12 +95,11 @@ namespace PluieDeFleche.Engine.Entities.NPC
 				dir = dir.Normalized();
 
 				quat = new Quaternion(Vector3.Forward, dir);
+				quat = quat.Normalized();
 
 				GlobalTransform = new Transform3D(new Basis(GlobalTransform.Basis.GetRotationQuaternion().Slerp(quat, 0.5f)), GlobalTransform.Origin);
 
-				Data.FireTimer += delta;
-
-				if(Data.FireTimer > Parameters.FireRate)
+				if(Data.FireTimer >= Parameters.FireRate)
 				{
 					ArrowItem arrow;
 					Vector3 pos;
@@ -104,7 +115,13 @@ namespace PluieDeFleche.Engine.Entities.NPC
 					pos.Y += 1.2f;
 					arrow.GlobalTransform = new Transform3D(new Basis(GlobalTransform.Basis.GetRotationQuaternion()), pos);
 					spreadAngle = Math.PI * (Parameters.Spread * (_rnd.NextDouble() - 0.5d) - 0.5d);
-					arrow.ApplyForce(GlobalTransform.Basis.GetRotationQuaternion() * new Vector3((float)Math.Cos(spreadAngle), 0, (float)Math.Sin(spreadAngle)) * 200.0f);
+					dir = Data.CurrentTarget.GlobalTransform.Origin - GlobalTransform.Origin;
+					dir = dir.Normalized();
+					//dir += new Vector3((float)Math.Cos(spreadAngle), 0, (float)Math.Sin(spreadAngle));
+					//dir = dir.Normalized();
+					//dir += Vector3.Down * 0.2f;
+					//dir = dir.Normalized();
+					arrow.ApplyForce(dir * 300.0f);
 
 					Data.FireCount++;
 
@@ -113,6 +130,7 @@ namespace PluieDeFleche.Engine.Entities.NPC
 						Data.FireCount = 0;
 						Data.FireTargetCount = _rnd.Next(Parameters.MinArrow, Parameters.MaxArrow + 1);
 						Data.CurrentTarget = null;
+						Data.NextTargetTimer = 0.0d;
 					}
 				}
 			}
