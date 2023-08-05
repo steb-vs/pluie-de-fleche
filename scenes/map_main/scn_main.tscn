@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs85avyhlrhvh"]
+[gd_scene load_steps=21 format=3 uid="uid://bs85avyhlrhvh"]
 
 [ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="1_dbp7y"]
 [ext_resource type="Script" path="res://scenes/map_main/scn_main.gd" id="1_dk0tg"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cin1kdk0lpkoo" path="res://systems/NDE_city_system.tscn" id="3_oxdsq"]
 [ext_resource type="PackedScene" uid="uid://b0d724nquytkd" path="res://game_object/spawner/pth_spawner.tscn" id="4_32ley"]
 [ext_resource type="Resource" uid="uid://dfnn505tq0t6" path="res://game_object/vague/wave_1.tres" id="5_6w6nt"]
+[ext_resource type="Shader" path="res://scenes/map_main/skybox.gdshader" id="5_7pppp"]
 [ext_resource type="Resource" uid="uid://dmxgnck8ri62o" path="res://game_object/vague/wave_2.tres" id="6_hl5xh"]
+[ext_resource type="Texture2D" uid="uid://c4eclnx7k275b" path="res://models/skybox/Epic_GloriousPink_EquiRect.png" id="6_pdox0"]
 [ext_resource type="PackedScene" uid="uid://difcmms6260yt" path="res://game_object/despawner/a3d_despawner.tscn" id="7_fcy4u"]
 [ext_resource type="Resource" uid="uid://by612v2dc0nfj" path="res://game_object/vague/wave_3.tres" id="8_kx0xk"]
 [ext_resource type="PackedScene" uid="uid://c1hur8xtqfsk" path="res://models/valley_of_death/valley_de_la_mort_collision.tscn" id="8_xrhlb"]
@@ -14,7 +16,18 @@
 [ext_resource type="Resource" uid="uid://6rixq76krgtu" path="res://game_object/vague/wave_5.tres" id="10_r2knn"]
 [ext_resource type="PackedScene" uid="uid://be4s1fm7846ju" path="res://game_object/entities/npc/npc_mahaut.tscn" id="13_kff1p"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfex8"]
+shader = ExtResource("5_7pppp")
+shader_parameter/skyColor = Color(1, 0, 0, 1)
+shader_parameter/skyTexture = ExtResource("6_pdox0")
+
+[sub_resource type="Sky" id="Sky_bs83l"]
+sky_material = SubResource("ShaderMaterial_xfex8")
+
 [sub_resource type="Environment" id="Environment_ttq1c"]
+background_mode = 2
+sky = SubResource("Sky_bs83l")
+ambient_light_source = 3
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ffs7m"]
 vertices = PackedVector3Array(-76.696, 1.24878, -2.46274, -76.696, 1.24878, 4.28726, -66.196, 1.24878, 4.28726, -66.196, 1.24878, -9.21274, -76.696, 1.24878, -9.21274, -76.696, 1.24878, -2.46274, -2.446, 1.24878, 4.28726, 8.304, 1.24878, 4.28726, 8.304, 1.24878, -2.46274, 8.304, 1.24878, -2.46274, 8.304, 1.24878, -9.21274, -2.446, 1.24878, -9.21274, -2.446, 1.24878, 4.28726, 8.304, 1.24878, -2.46274, -2.446, 1.24878, -9.21274, -12.946, 1.24878, -9.21274, -12.946, 1.24878, 4.28726, -66.196, 1.24878, -9.21274, -76.696, 1.24878, -2.46274, -66.196, 1.24878, 4.28726, -55.446, 1.24878, 4.28726, -55.446, 1.24878, -9.21274, -44.946, 1.24878, 4.28726, -34.196, 1.24878, 4.28726, -34.196, 1.24878, -9.21274, -44.946, 1.24878, -9.21274, -55.446, 1.24878, 4.28726, -44.946, 1.24878, 4.28726, -44.946, 1.24878, -9.21274, -55.446, 1.24878, -9.21274, -23.696, 1.24878, 4.28726, -12.946, 1.24878, 4.28726, -12.946, 1.24878, -9.21274, -23.696, 1.24878, -9.21274, -34.196, 1.24878, 4.28726, -23.696, 1.24878, 4.28726, -23.696, 1.24878, -9.21274, -34.196, 1.24878, -9.21274)
