@@ -10,7 +10,7 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 {
     internal partial class ArrowArea : Area3D
     {
-        public bool HasHit { get; set; }
+        public Node Malemonaik { get; set; }
 
         public override void _Ready()
         {
@@ -19,12 +19,7 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 
         private void ArrowArea_AreaEntered(Area3D area)
         {
-            HasHit = area.GetParent()?.GDTypeIs("chb_malemoniak") == true;
-
-            if(HasHit)
-            {
-                area.GetParent().Call("death");
-            }
+            Malemonaik = area.GetParent()?.GDTypeIs("chb_malemoniak") == true ? area.GetParent() : null;
         }
     }
 }

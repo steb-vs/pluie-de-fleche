@@ -13,44 +13,35 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 		private const float LIFESPAN = 10.0f;
 		private double _airTimer;
 		private double _stuckTimer;
-		private Node _malemoniak;
 		private bool _hasHit;
-		private bool _isAttached;
 		private ArrowArea _area;
 
 		public override void _Ready()
 		{
 			BodyEntered += ArrowItem_BodyEntered;
 			_area = GetNode<ArrowArea>("./Area3D");
-
 		}
 
 		private void ArrowItem_BodyEntered(Node body)
 		{
 			_hasHit = true;
-
-			if(body.GDTypeIs("chb_malemoniak") == true && _area.HasHit)
-			{
-				_malemoniak = body;
-			}
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
-			if(_hasHit)
+			if(!Freeze && (_hasHit || _area.Malemonaik != null))
 			{
 				Freeze = true;
 
-				if (!_isAttached && _malemoniak != null)
+				if (_area.Malemonaik != null)
 				{
 					Transform3D oldTr;
 
-					_malemoniak.Call("take_damage", 2);
+					_area.Malemonaik.Call("taking_damage", 5);
 					oldTr = GlobalTransform;
 					GetParent().RemoveChild(this);
-					_malemoniak.AddChild(this);
+					_area.Malemonaik.AddChild(this);
 					GlobalTransform = oldTr;
-					_isAttached = true;
 				}
 			}
 
