@@ -9,32 +9,50 @@ namespace PluieDeFleche.Engine.Entities.Player
 {
 	internal partial class PlayerEntity : CharacterBody3D
 	{
-		private PlayerData _data;
-		private PlayerParameters _parameters;
+		[Export]
+		private PlayerData Data { get; set; }
+
+		[Export]
+		private PlayerParameters Parameters { get; set; }
+
 		private Camera3D _cam;
 		private Node3D _bow;
 		private Vector2 _rot;
+		private AudioStreamPlayer _audio;
+		private double _footstepTimer;
+		private List<AudioStream> _footsteps;
+		private readonly Random _rnd;
 
 		private const float PRECISION = 4096.0f;
 		private const float LIMIT = 1000.0f;
+
+		public PlayerEntity()
+		{
+			_rnd = new();
+		}
 
 		public override void _Ready()
 		{
 			Input.MouseMode = Input.MouseModeEnum.Captured;
 
-			_data = GetNode<PlayerData>("./NOD_Data");
-			_parameters = GetNode<PlayerParameters>("./NOD_Parameters");
 			_cam = GetNode<Camera3D>("./CAM_Player");
 			_bow = GetNode<Node3D>("./SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud/N3D_WeaponOrigin/WPN_Bow");
+			_audio = GetNode<AudioStreamPlayer>("./ASP_Footsteps");
+			_footsteps = new List<AudioStream>();
 
-			_data.InvMass = 1.0f / _parameters.Mass;
+			for(int i = 3; i <= 8; i++)
+			{
+				_footsteps.Add(ResourceLoader.Load<AudioStream>($"res://sounds/footsteps/dirt{i}.wav"));
+			}
+
+			Data.InvMass = 1.0f / Parameters.Mass;
 		}
 
 		public override void _Input(InputEvent @event)
 		{
 			if(@event is InputEventMouseMotion mm)
 			{
-				_rot += new Vector2(mm.Relative.X * _parameters.MouseSensivityX, mm.Relative.Y * _parameters.MouseSensivityY);
+				_rot += new Vector2(mm.Relative.X * Parameters.MouseSensivityX, mm.Relative.Y * Parameters.MouseSensivityY);
 
 				_rot.X %= PRECISION;
 				_rot.Y = Mathf.Clamp(_rot.Y, -LIMIT, LIMIT);
@@ -47,19 +65,19 @@ namespace PluieDeFleche.Engine.Entities.Player
 			float dRotX;
 			float dRotY;
 
-			_data.OldRawRotation = _data.RawRotation;
-			_data.OldRotation = _data.Rotation;
+			Data.OldRawRotation = Data.RawRotation;
+			Data.OldRotation = Data.Rotation;
 
-			_data.RawRotation = _rot;
-			_data.Rotation = new Vector2(_rot.X / PRECISION * (Mathf.Pi * 2.0f), _rot.Y / PRECISION * (Mathf.Pi * 2.0f));
+			Data.RawRotation = _rot;
+			Data.Rotation = new Vector2(_rot.X / PRECISION * (Mathf.Pi * 2.0f), _rot.Y / PRECISION * (Mathf.Pi * 2.0f));
 
-			quat = new Quaternion(Vector3.Up, -_data.Rotation.X);
+			quat = new Quaternion(Vector3.Up, -Data.Rotation.X);
 			Transform = new Transform3D(new Basis(quat), Transform.Origin);
 
-			quat = new Quaternion(Vector3.Right, -_data.Rotation.Y);
+			quat = new Quaternion(Vector3.Right, -Data.Rotation.Y);
 			_cam.Transform = new Transform3D(new Basis(quat), _cam.Transform.Origin);
 
-			dRotX = _data.OldRawRotation.X - _data.RawRotation.X;
+			dRotX = Data.OldRawRotation.X - Data.RawRotation.X;
 
 			if (Math.Abs(dRotX) > PRECISION * 0.5f)
 			{
@@ -68,14 +86,14 @@ namespace PluieDeFleche.Engine.Entities.Player
 
 			dRotX *= 0.002f;
 
-			dRotY = _data.RawRotation.Y - _data.OldRawRotation.Y;
+			dRotY = Data.RawRotation.Y - Data.OldRawRotation.Y;
 			dRotY *= 0.005f;
 
 			_bow.Transform = new Transform3D(
 				_bow.Transform.Basis,
 				new Vector3(
 					Mathf.Lerp(_bow.Transform.Origin.X, dRotX, (float)(delta * 5.0d)),
-					Mathf.Lerp(_bow.Transform.Origin.Y, dRotY - _data.Velocity.Y * 0.02f, (float)(delta * 5.0d)),
+					Mathf.Lerp(_bow.Transform.Origin.Y, dRotY - Data.Velocity.Y * 0.02f, (float)(delta * 5.0d)),
 					0));
 		}
 
@@ -107,38 +125,46 @@ namespace PluieDeFleche.Engine.Entities.Player
 					acc += Vector3.Right;
 				}
 
-				acc *= _parameters.Speed;
+				acc *= Parameters.Speed;
 
 				if (Input.IsActionJustPressed("jump"))
 				{
-					acc.Y += _parameters.JumpForce;
+					acc.Y += Parameters.JumpForce;
 				}
 			}
 
 			acc = Transform.Basis * acc;
 			flatAcc = new Vector3(acc.X, 0, acc.Z);
 
-			if (flatAcc.Length() > _parameters.Speed)
+			if (flatAcc.Length() > Parameters.Speed)
 			{
-				flatAcc = flatAcc.Normalized() * _parameters.Speed;
+				flatAcc = flatAcc.Normalized() * Parameters.Speed;
 				acc.X = flatAcc.X;
 				acc.Z = flatAcc.Z;
 			}
 
 			if (!IsOnFloor())
 			{
-				acc.Y -= _parameters.Gravity * _parameters.Mass;
+				acc.Y -= Parameters.Gravity * Parameters.Mass;
 			}
 
 			vel = Velocity;
 			flatVel = new Vector3(vel.X, 0, vel.Z);
+			_footstepTimer += flatVel.Length();
+
+			if (_footstepTimer > 180.0d)
+			{
+				_footstepTimer = 0.0d;
+				_audio.Stream = _footsteps[_rnd.Next(0, _footsteps.Count)];
+				_audio.Play();
+			}
 
 			if (IsOnFloor())
 			{
-				acc -= flatVel * _parameters.Friction;
+				acc -= flatVel * Parameters.Friction;
 			}
 
-			vel += acc * _data.InvMass;
+			vel += acc * Data.InvMass;
 
 			if(IsOnFloor())
 			{
@@ -155,7 +181,7 @@ namespace PluieDeFleche.Engine.Entities.Player
 
 			Velocity = vel;
 			MoveAndSlide();
-			_data.Velocity = Velocity;
+			Data.Velocity = Velocity;
 		}
 	}
 }

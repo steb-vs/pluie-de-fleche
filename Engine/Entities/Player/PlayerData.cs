@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace PluieDeFleche.Engine.Entities.Player
 {
-    internal partial class PlayerData : Node
+    [GlobalClass]
+    internal partial class PlayerData : Resource
     {
         [Export]
         public Vector3 Velocity { get; set; }

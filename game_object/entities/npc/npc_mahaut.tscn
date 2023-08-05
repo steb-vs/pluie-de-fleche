@@ -8,12 +8,13 @@
 
 [sub_resource type="Resource" id="Resource_486y2"]
 script = ExtResource("2_cdugo")
-MinRange = 5.0
-MaxRange = 20.0
+MinRange = 2.0
+MaxRange = 10.0
 MinArrow = 2
 MaxArrow = 5
 FireRate = 3.0
 Spread = 0.05
+ArrowDamage = 2
 
 [sub_resource type="Resource" id="Resource_6xp72"]
 script = ExtResource("3_iycny")

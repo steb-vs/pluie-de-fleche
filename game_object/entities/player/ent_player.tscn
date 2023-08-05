@@ -1,10 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgf6vpi3tfeyu"]
+[gd_scene load_steps=10 format=3 uid="uid://bgf6vpi3tfeyu"]
 
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerEntity.cs" id="1_bjbxg"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerParameters.cs" id="2_st623"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerData.cs" id="3_tnre5"]
 [ext_resource type="Script" path="res://Engine/Common/WorldPositionSyncNode.cs" id="4_0pgdc"]
 [ext_resource type="PackedScene" uid="uid://bwfw220hqpexi" path="res://game_object/weapons/wpn_bow.tscn" id="5_ccpm8"]
+[ext_resource type="AudioStream" uid="uid://bklmiwnouvyse" path="res://sounds/footsteps/dirt3.wav" id="6_vv5co"]
+
+[sub_resource type="Resource" id="Resource_56l5r"]
+script = ExtResource("3_tnre5")
+Velocity = Vector3(0, 0, 0)
+InvMass = 0.0
+RawRotation = Vector2(0, 0)
+OldRawRotation = Vector2(0, 0)
+Rotation = Vector2(0, 0)
+OldRotation = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_4bgco"]
+script = ExtResource("2_st623")
+Speed = 150.0
+Gravity = 0.5
+Friction = 20.0
+Mass = 70.0
+JumpForce = 500.0
+MouseSensivityX = 1.0
+MouseSensivityY = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6ulo"]
 radius = 0.25
@@ -14,12 +34,8 @@ height = 1.7
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_bjbxg")
-
-[node name="NOD_Parameters" type="Node" parent="."]
-script = ExtResource("2_st623")
-
-[node name="NOD_Data" type="Node" parent="."]
-script = ExtResource("3_tnre5")
+Data = SubResource("Resource_56l5r")
+Parameters = SubResource("Resource_4bgco")
 
 [node name="CLS_Body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
@@ -56,3 +72,6 @@ cull_mask = 524288
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.165904, -0.0133188, -0.258539)
 
 [node name="WPN_Bow" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud/N3D_WeaponOrigin" instance=ExtResource("5_ccpm8")]
+
+[node name="ASP_Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vv5co")

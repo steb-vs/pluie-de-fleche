@@ -45,18 +45,46 @@ namespace PluieDeFleche.Engine.Entities.NPC
 
 			if(Data.CurrentTarget == null && Data.AvailableTargets.Any())
 			{
-				Data.CurrentTarget = Data.AvailableTargets[_rnd.Next(0, Data.AvailableTargets.Count)];
+				Vector3 flatPos;
+				List<Node3D> candidates;
+
+				flatPos = GlobalTransform.Origin;
+				flatPos.Y = 0.0f;
+
+				candidates = Data.AvailableTargets
+					.Where(x =>
+					{
+						Vector3 flatPos2;
+						float dist;
+
+						flatPos2 = x.GlobalTransform.Origin;
+						flatPos2.Y = 0.0f;
+						dist = Math.Abs(flatPos.Length() - flatPos2.Length());
+
+						GD.Print(dist);
+
+						return dist >= Parameters.MinRange && dist <= Parameters.MaxRange;
+					})
+					.ToList();
+
+				if(candidates.Any())
+				{
+					Data.CurrentTarget = candidates[_rnd.Next(0, candidates.Count)];
+				}
 			}
 
 			if(Data.CurrentTarget != null)
 			{
 				Vector3 dir;
+				Quaternion quat;
 
 				dir = Data.CurrentTarget.GlobalTransform.Origin - GlobalTransform.Origin;
 				dir.Y = 0.0f;
 				dir = dir.Normalized();
 
-				LookAt(GlobalTransform.Origin + dir);
+				quat = new Quaternion(Vector3.Forward, dir);
+
+				GlobalTransform = new Transform3D(new Basis(GlobalTransform.Basis.GetRotationQuaternion().Slerp(quat, 0.5f)), GlobalTransform.Origin);
 
 				Data.FireTimer += delta;
 
@@ -70,6 +98,7 @@ namespace PluieDeFleche.Engine.Entities.NPC
 					_animTree.Set("parameters/fire_trigger/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
 
 					arrow = _arrowPrefab.Instantiate<ArrowItem>();
+					arrow.Parameters.Damage = Parameters.ArrowDamage;
 					GetTree().Root.AddChild(arrow);
 					pos = GlobalTransform.Origin;
 					pos.Y += 1.2f;

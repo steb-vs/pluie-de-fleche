@@ -11,10 +11,10 @@ namespace PluieDeFleche.Engine.Entities.NPC
     internal partial class NpcParameters : Resource
     {
         [Export]
-        public float MinRange { get; set; } = 5.0f;
+        public float MinRange { get; set; } = 2.0f;
 
         [Export]
-        public float MaxRange { get; set; } = 20.0f;
+        public float MaxRange { get; set; } = 10.0f;
 
         [Export]
         public int MinArrow { get; set; } = 2;
@@ -27,5 +27,8 @@ namespace PluieDeFleche.Engine.Entities.NPC
 
         [Export]
         public float Spread { get; set; } = 0.05f;
+
+        [Export]
+        public int ArrowDamage { get; set; } = 2;
     }
 }
