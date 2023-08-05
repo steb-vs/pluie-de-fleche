@@ -1,19 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://be4s1fm7846ju"]
+[gd_scene load_steps=10 format=3 uid="uid://be4s1fm7846ju"]
 
 [ext_resource type="Script" path="res://Engine/Entities/NPC/NpcEntity.cs" id="1_lsjyf"]
 [ext_resource type="PackedScene" uid="uid://dral330bsqky8" path="res://models/npcs/mahaut/mdl_mahaut.tscn" id="2_7mhxk"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcParameters.cs" id="2_cdugo"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcData.cs" id="3_iycny"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcMalemoniakDetector.cs" id="5_v3rjj"]
+
+[sub_resource type="Resource" id="Resource_486y2"]
+script = ExtResource("2_cdugo")
+MinRange = 5.0
+MaxRange = 20.0
+MinArrow = 2
+MaxArrow = 5
+FireRate = 3.0
+Spread = 0.05
+
+[sub_resource type="Resource" id="Resource_6xp72"]
+script = ExtResource("3_iycny")
+AvailableTargets = null
+FireCount = 0
+FireTargetCount = 0
+FireTimer = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnota"]
-radius = 0.2
+radius = 0.4
 height = 1.7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_113e0"]
+size = Vector3(30, 30, 30)
 
 [node name="NPC_Mahaut" type="CharacterBody3D"]
 collision_layer = 4
 script = ExtResource("1_lsjyf")
+Parameters = SubResource("Resource_486y2")
+Data = SubResource("Resource_6xp72")
 
 [node name="MDL_Mahaut" parent="." instance=ExtResource("2_7mhxk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CLS_Body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CapsuleShape3D_bnota")
+
+[node name="A3D_MalemoniakDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("5_v3rjj")
+
+[node name="CLS_Detector" type="CollisionShape3D" parent="A3D_MalemoniakDetector"]
+shape = SubResource("BoxShape3D_113e0")

@@ -30,7 +30,7 @@ environment = SubResource("Environment_l2rfe")
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 3.53454, 0)
 
 [node name="NPC_Mahaut" parent="." instance=ExtResource("3_jgxrj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491375, -4.09718)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0268, 0.491375, 5.2985)
 
 [node name="CHB_Malemoniak" parent="." instance=ExtResource("4_pnbh8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43266, 0.68238, 6.5724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.341781, 0.68238, -4.34708)

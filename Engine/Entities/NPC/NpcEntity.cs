@@ -1,4 +1,5 @@
 using Godot;
+using PluieDeFleche.Engine.Entities.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,15 @@ namespace PluieDeFleche.Engine.Entities.NPC
 {
 	internal partial class NpcEntity : CharacterBody3D
 	{
-		private bool _walk;
-		private double _aiTimer;
-		private float _angle;
+		[Export]
+		public NpcParameters Parameters { get; set; }
+
+		[Export]
+		public NpcData Data { get; set; }
+
 		private readonly Random _rnd;
 		private AnimationTree _animTree;
+		private PackedScene _arrowPrefab;
 
 		public NpcEntity()
 		{
@@ -23,36 +28,64 @@ namespace PluieDeFleche.Engine.Entities.NPC
 		public override void _Ready()
 		{
 			_animTree = GetNode<AnimationTree>("./MDL_Mahaut/AnimationTree");
+			_arrowPrefab = ResourceLoader.Load<PackedScene>("res://game_object/weapons/itm_arrow.tscn");
+			Data.FireTargetCount = _rnd.Next(Parameters.MinArrow, Parameters.MaxArrow + 1);
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
 			Vector3 vel;
 
-			_aiTimer += delta;
-
-			if(_aiTimer >= 2.0f)
-			{
-				_aiTimer = 0.0d;
-				_walk = !_walk;
-
-				if(_walk)
-				{
-					_angle = (float)(Math.PI * 2.0f * _rnd.NextDouble());
-				}
-			}
-
 			vel = Vector3.Zero;
 
 			if(!IsOnFloor())
 			{
-				vel.Y = -1.0f;
+				vel.Y = -2.0f;
 			}
 
-			if(_walk)
+			if(Data.CurrentTarget == null && Data.AvailableTargets.Any())
 			{
-				GlobalTransform = new Transform3D(new Basis(GlobalTransform.Basis.GetRotationQuaternion().Slerp(new Quaternion(Vector3.Up, _angle), 0.5f)), GlobalTransform.Origin);
-				vel += GlobalTransform.Basis.GetRotationQuaternion() * Vector3.Forward;
+				Data.CurrentTarget = Data.AvailableTargets[_rnd.Next(0, Data.AvailableTargets.Count)];
+			}
+
+			if(Data.CurrentTarget != null)
+			{
+				Vector3 dir;
+
+				dir = Data.CurrentTarget.GlobalTransform.Origin - GlobalTransform.Origin;
+				dir.Y = 0.0f;
+				dir = dir.Normalized();
+
+				LookAt(GlobalTransform.Origin + dir);
+
+				Data.FireTimer += delta;
+
+				if(Data.FireTimer > Parameters.FireRate)
+				{
+					ArrowItem arrow;
+					Vector3 pos;
+					double spreadAngle;
+
+					Data.FireTimer = 0.0f;
+					_animTree.Set("parameters/fire_trigger/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
+
+					arrow = _arrowPrefab.Instantiate<ArrowItem>();
+					GetTree().Root.AddChild(arrow);
+					pos = GlobalTransform.Origin;
+					pos.Y += 1.2f;
+					arrow.GlobalTransform = new Transform3D(new Basis(GlobalTransform.Basis.GetRotationQuaternion()), pos);
+					spreadAngle = Math.PI * (Parameters.Spread * (_rnd.NextDouble() - 0.5d) - 0.5d);
+					arrow.ApplyForce(GlobalTransform.Basis.GetRotationQuaternion() * new Vector3((float)Math.Cos(spreadAngle), 0, (float)Math.Sin(spreadAngle)) * 200.0f);
+
+					Data.FireCount++;
+
+					if(Data.FireCount >= Data.FireTargetCount)
+					{
+						Data.FireCount = 0;
+						Data.FireTargetCount = _rnd.Next(Parameters.MinArrow, Parameters.MaxArrow + 1);
+						Data.CurrentTarget = null;
+					}
+				}
 			}
 
 			_animTree.Set("parameters/run_blend/blend_amount", Mathf.Clamp(vel.Length(), 0.0f, 1.0f));

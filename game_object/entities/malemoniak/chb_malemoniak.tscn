@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://game_object/entities/malemoniak/chb_malemoniak.gd" id="1_21l87"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i6l2a"]
+radius = 0.4
 height = 1.8
 
 [sub_resource type="Shader" id="Shader_hmkxs"]
@@ -125,6 +126,8 @@ height = 1.0
 material = SubResource("ShaderMaterial_okbiw")
 
 [node name="A3D_HurtBoxBody" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="A3D_HurtBoxBody"]
 shape = SubResource("CylinderShape3D_vx2f4")
@@ -136,6 +139,8 @@ material = SubResource("ShaderMaterial_62mo1")
 
 [node name="A3D_HurtBoxHead" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78779, 0)
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="A3D_HurtBoxHead"]
 shape = SubResource("SphereShape3D_4i7rj")

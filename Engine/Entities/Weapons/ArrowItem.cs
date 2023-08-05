@@ -37,7 +37,7 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 				{
 					Transform3D oldTr;
 
-					_area.Malemonaik.Call("taking_damage", 5);
+					_area.Malemonaik.Call("take_damage", 5);
 					oldTr = GlobalTransform;
 					GetParent().RemoveChild(this);
 					_area.Malemonaik.AddChild(this);
