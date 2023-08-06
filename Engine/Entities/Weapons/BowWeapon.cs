@@ -40,7 +40,7 @@ namespace PluieDeFleche.Engine.Entities.Weapons
 				arrow.Parameters.Damage = Parameters.ArrowDamage;
 				GetTree().Root.AddChild(arrow);
 				arrow.GlobalTransform = new Transform3D(new Basis(GlobalTransform.Basis.GetRotationQuaternion()), GlobalTransform.Origin);
-				arrow.ApplyForce(GlobalTransform.Basis.GetRotationQuaternion() * Vector3.Forward * ((float)Mathf.Clamp(_holdTime * 2.0f, 0.0f, 5.0f) + 1.0f) * 80.0f);
+				arrow.ApplyForce(GlobalTransform.Basis.GetRotationQuaternion() * Vector3.Forward * ((float)Mathf.Clamp(_holdTime * 4.0f, 0.0f, 10.0f) + 1.5f) * 80.0f);
 				_holdTime = 0.0f;
 			}
 

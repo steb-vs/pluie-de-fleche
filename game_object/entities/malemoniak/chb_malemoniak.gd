@@ -10,6 +10,8 @@ signal killed(fame_bounty : int)
 @onready var hurt_box_body = $A3D_HurtBoxBody
 @onready var hurt_box_head = $A3D_HurtBoxHead
 
+@onready var audio_death = $ASP_Death
+
 var movement_speed : float = 5.0
 @export var movement_target_position : Vector3
 @export var damage : int = 5
@@ -85,6 +87,8 @@ func kill() -> void: #When killed by player
 
 
 func death() -> void:
+	audio_death.play()
+	
 	hurt_box_body.monitorable = false
 	hurt_box_head.monitorable = false
 	movement_speed = 0.0

@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Engine/Entities/Weapons/ArrowArea.cs" id="3_anxul"]
 [ext_resource type="AudioStream" uid="uid://c0omjl5cj617x" path="res://sounds/longbow/arrow1.wav" id="5_m0sfs"]
 
-[sub_resource type="Resource" id="Resource_kxi7o"]
+[sub_resource type="Resource" id="Resource_8aqsi"]
+resource_local_to_scene = true
 script = ExtResource("2_6egvg")
 Damage = 2
 
@@ -23,7 +24,7 @@ continuous_cd = true
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_wofgb")
-Parameters = SubResource("Resource_kxi7o")
+Parameters = SubResource("Resource_8aqsi")
 
 [node name="MDL_Arrow" parent="." instance=ExtResource("1_3m0t2")]
 transform = Transform3D(-4.37114e-08, 0, -5, 0, 5, 0, 1, 0, -2.18557e-07, 0, 0, 0)
@@ -75,7 +76,7 @@ shape = SubResource("SphereShape3D_5by06")
 
 [node name="ASP_Arrow" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_m0sfs")
-volume_db = -21.053
+volume_db = -32.358
 autoplay = true
 attenuation_filter_db = 0.0
 doppler_tracking = 1

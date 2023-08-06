@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b3vn610jq8hjj"]
+[gd_scene load_steps=25 format=3 uid="uid://b3vn610jq8hjj"]
 
 [ext_resource type="Script" path="res://scenes/map_main/scn_main.gd" id="1_7b5yb"]
 [ext_resource type="PackedScene" uid="uid://bgf6vpi3tfeyu" path="res://game_object/entities/player/ent_player.tscn" id="2_74nm5"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://difcmms6260yt" path="res://game_object/despawner/a3d_despawner.tscn" id="13_otfuh"]
 [ext_resource type="PackedScene" uid="uid://c1hur8xtqfsk" path="res://models/valley_of_death/valley_de_la_mort_collision.tscn" id="14_ixihm"]
 [ext_resource type="PackedScene" uid="uid://be4s1fm7846ju" path="res://game_object/entities/npc/npc_mahaut.tscn" id="15_a3y37"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcParameters.cs" id="16_diccy"]
+[ext_resource type="Script" path="res://Engine/Entities/NPC/NpcData.cs" id="17_bbs2g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfex8"]
 shader = ExtResource("5_45w32")
@@ -35,6 +37,27 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fooel"]
 size = Vector2(86, 14.5)
+
+[sub_resource type="Resource" id="Resource_lqkwp"]
+resource_local_to_scene = true
+script = ExtResource("16_diccy")
+MinRange = 2.0
+MaxRange = 10.0
+MinArrow = 2
+MaxArrow = 5
+FireRate = 3.0
+Spread = 0.05
+ArrowDamage = 2
+NextTargetCoolDown = 1.0
+
+[sub_resource type="Resource" id="Resource_pg3c8"]
+resource_local_to_scene = true
+script = ExtResource("17_bbs2g")
+AvailableTargets = null
+FireCount = 0
+FireTargetCount = 0
+FireTimer = 0.0
+NextTargetTimer = 0.0
 
 [node name="SCN_Main" type="Node3D"]
 script = ExtResource("1_7b5yb")
@@ -78,3 +101,5 @@ mesh = SubResource("PlaneMesh_fooel")
 
 [node name="NPC_Mahaut" parent="." instance=ExtResource("15_a3y37")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 5, 5.66011)
+Parameters = SubResource("Resource_lqkwp")
+Data = SubResource("Resource_pg3c8")

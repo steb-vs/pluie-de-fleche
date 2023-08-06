@@ -11,6 +11,6 @@ namespace PluieDeFleche.Engine.Entities.Weapons
     internal partial class BowParameters : Resource
     {
         [Export]
-        public int ArrowDamage { get; set; } = 2;
+        public int ArrowDamage { get; set; } = 5;
     }
 }

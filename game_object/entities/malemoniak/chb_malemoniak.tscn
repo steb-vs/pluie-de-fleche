@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4cn4kw3yp3y1"]
+[gd_scene load_steps=18 format=3 uid="uid://c4cn4kw3yp3y1"]
 
 [ext_resource type="Script" path="res://game_object/entities/malemoniak/chb_malemoniak.gd" id="1_21l87"]
+[ext_resource type="AudioStream" uid="uid://bwbgucptoejoc" path="res://sounds/malemoniak/death1.wav" id="2_ts7ta"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i6l2a"]
 radius = 0.4
@@ -146,5 +147,10 @@ collision_mask = 0
 shape = SubResource("SphereShape3D_4i7rj")
 
 [node name="NVA" type="NavigationAgent3D" parent="."]
+
+[node name="ASP_Death" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ts7ta")
+volume_db = -25.178
+attenuation_filter_db = 0.0
 
 [connection signal="navigation_finished" from="NVA" to="." method="_on_nva_navigation_finished"]

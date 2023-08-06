@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgf6vpi3tfeyu"]
+[gd_scene load_steps=14 format=3 uid="uid://bgf6vpi3tfeyu"]
 
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerEntity.cs" id="1_bjbxg"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerParameters.cs" id="2_st623"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerData.cs" id="3_tnre5"]
 [ext_resource type="Script" path="res://Engine/Common/WorldPositionSyncNode.cs" id="4_0pgdc"]
 [ext_resource type="PackedScene" uid="uid://bwfw220hqpexi" path="res://game_object/weapons/wpn_bow.tscn" id="5_ccpm8"]
+[ext_resource type="Script" path="res://Engine/Entities/Weapons/BowParameters.cs" id="6_1ssdd"]
 [ext_resource type="AudioStream" uid="uid://bklmiwnouvyse" path="res://sounds/footsteps/dirt3.wav" id="6_vv5co"]
 
-[sub_resource type="Resource" id="Resource_56l5r"]
+[sub_resource type="Resource" id="Resource_1qcq4"]
+resource_local_to_scene = true
 script = ExtResource("3_tnre5")
 Velocity = Vector3(0, 0, 0)
 InvMass = 0.0
@@ -16,7 +18,8 @@ OldRawRotation = Vector2(0, 0)
 Rotation = Vector2(0, 0)
 OldRotation = Vector2(0, 0)
 
-[sub_resource type="Resource" id="Resource_4bgco"]
+[sub_resource type="Resource" id="Resource_bcdev"]
+resource_local_to_scene = true
 script = ExtResource("2_st623")
 Speed = 150.0
 Gravity = 0.5
@@ -29,6 +32,11 @@ MouseSensivityY = 1.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6ulo"]
 radius = 0.25
 height = 1.7
+
+[sub_resource type="Resource" id="Resource_7xcqr"]
+resource_local_to_scene = true
+script = ExtResource("6_1ssdd")
+ArrowDamage = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18vcr"]
 transparency = 1
@@ -44,8 +52,8 @@ outer_radius = 0.147
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_bjbxg")
-Data = SubResource("Resource_56l5r")
-Parameters = SubResource("Resource_4bgco")
+Data = SubResource("Resource_1qcq4")
+Parameters = SubResource("Resource_bcdev")
 
 [node name="CLS_Body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
@@ -82,10 +90,13 @@ cull_mask = 524288
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.165904, -0.0133188, -0.258539)
 
 [node name="WPN_Bow" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud/N3D_WeaponOrigin" instance=ExtResource("5_ccpm8")]
+Parameters = SubResource("Resource_7xcqr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.103513, 0, -2.12986)
+[node name="MI_Crosshair" type="MeshInstance3D" parent="SVC_Hud/SVP_Hud/N3D_HudOrigin/CAM_Hud"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0573673, 0, -2.12986)
+layers = 524288
 mesh = SubResource("TorusMesh_jo1kr")
 
 [node name="ASP_Footsteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_vv5co")
+volume_db = -30.105

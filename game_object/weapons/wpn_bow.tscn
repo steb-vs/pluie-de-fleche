@@ -5,16 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://bjhxokrnnc831" path="res://models/bow/mdl_bow.tscn" id="2_eoack"]
 [ext_resource type="AudioStream" uid="uid://bbvtx746p2gbq" path="res://sounds/longbow/fire2.wav" id="4_pkfit"]
 
-[sub_resource type="Resource" id="Resource_vm180"]
+[sub_resource type="Resource" id="Resource_2qcf8"]
+resource_local_to_scene = true
 script = ExtResource("2_akwpy")
-ArrowDamage = 2
+ArrowDamage = 5
 
 [node name="WPN_Bow" type="Node3D"]
 script = ExtResource("1_snwi7")
-Parameters = SubResource("Resource_vm180")
+Parameters = SubResource("Resource_2qcf8")
 
 [node name="MDL_Bow" parent="." instance=ExtResource("2_eoack")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="ASP_Bow" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pkfit")
+volume_db = -8.21
