@@ -12,6 +12,8 @@ signal killed(fame_bounty : int)
 
 @onready var audio_death = $ASP_Death
 
+@onready var anim = $MDL_Malemoniak/AnimationTree
+
 var movement_speed : float = 5.0
 @export var movement_target_position : Vector3
 @export var damage : int = 5
@@ -87,13 +89,14 @@ func kill() -> void: #When killed by player
 
 func death() -> void:
 	audio_death.play()
+	anim.set("parameters/death_trigger/request", 1)
 	
 	hurt_box_body.monitorable = false
 	hurt_box_head.monitorable = false
 	movement_speed = 0.0
 	
 	var tween = get_tree().create_tween()
-	var duration : float = 1.0
+	var duration : float = 2.0
 	tween.tween_method(_set_shader_dissolve_value, 0.0, 1.0, duration)
 	
 	await tween.finished

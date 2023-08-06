@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://c4cn4kw3yp3y1"]
+[gd_scene load_steps=19 format=3 uid="uid://c4cn4kw3yp3y1"]
 
 [ext_resource type="Script" path="res://game_object/entities/malemoniak/chb_malemoniak.gd" id="1_21l87"]
+[ext_resource type="PackedScene" uid="uid://c8gp74q51jnos" path="res://models/npcs/malemoniak/mdl_malemoniak.tscn" id="2_44hr0"]
 [ext_resource type="AudioStream" uid="uid://bwbgucptoejoc" path="res://sounds/malemoniak/death1.wav" id="2_ts7ta"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i6l2a"]
@@ -122,7 +123,11 @@ hit_points = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325239, 0)
 shape = SubResource("CapsuleShape3D_i6l2a")
 
+[node name="MDL_Malemoniak" parent="." instance=ExtResource("2_44hr0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.569495, 0)
+
 [node name="CSG_Body" type="CSGCylinder3D" parent="."]
+visible = false
 radius = 0.4
 height = 1.0
 material = SubResource("ShaderMaterial_okbiw")
@@ -136,6 +141,7 @@ shape = SubResource("CylinderShape3D_vx2f4")
 
 [node name="CSG_Head" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.788117, 0)
+visible = false
 radius = 0.4
 material = SubResource("ShaderMaterial_62mo1")
 
