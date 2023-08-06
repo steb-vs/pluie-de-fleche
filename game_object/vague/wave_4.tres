@@ -8,5 +8,5 @@ script = ExtResource("2_6lage")
 number_wave = 4
 monster_type = ExtResource("1_7mbxe")
 max_spawn_number = 100
-interval_of_spawn = 0.6
+interval_of_spawn = 1.0
 size_of_group = 5
