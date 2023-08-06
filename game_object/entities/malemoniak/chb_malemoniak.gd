@@ -26,7 +26,7 @@ var movement_speed : float = 5.0
 		hit_points = value if value > 0 else 0
 		
 		if hit_points == 0:
-			death()
+			kill()
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -78,7 +78,6 @@ func _physics_process(delta):
 
 func take_damage(amount : int) -> void:
 	hit_points -= amount
-	print(hit_points)
 
 
 func kill() -> void: #When killed by player
@@ -120,5 +119,4 @@ func _set_shader_dissolve_value(value):
 
 
 func _on_nva_navigation_finished():
-	print("nva_finished")
 	attack_city()

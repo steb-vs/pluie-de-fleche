@@ -41,7 +41,6 @@ func start_wave() -> void:
 		if w.number_wave == wave_counter :
 			wave = waves[wave_counter - 1]
 	if wave == null :
-		print("end of waves")
 		return
 	
 	current_wave = wave
@@ -64,7 +63,6 @@ func _on_wave_ended() -> void:
 	spawn_timer.stop()
 	wave_process = false
 	rest_timer.start()
-	print("wave_ended")
 
 
 func _on_tmr_spawn_time_timeout() -> void:

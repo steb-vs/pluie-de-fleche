@@ -12,17 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://c4eclnx7k275b" path="res://models/skybox/Epic_GloriousPink_EquiRect.png" id="6_pdox0"]
 [ext_resource type="Script" path="res://Engine/Entities/Player/PlayerParameters.cs" id="6_rr17b"]
 [ext_resource type="PackedScene" uid="uid://difcmms6260yt" path="res://game_object/despawner/a3d_despawner.tscn" id="7_fcy4u"]
-[ext_resource type="Resource" path="res://game_object/vague/wave_3.tres" id="8_kx0xk"]
+[ext_resource type="Resource" uid="uid://by612v2dc0nfj" path="res://game_object/vague/wave_3.tres" id="8_kx0xk"]
 [ext_resource type="PackedScene" uid="uid://c1hur8xtqfsk" path="res://models/valley_of_death/valley_de_la_mort_collision.tscn" id="8_xrhlb"]
-[ext_resource type="Resource" path="res://game_object/vague/wave_4.tres" id="9_g8l4i"]
-[ext_resource type="Resource" path="res://game_object/vague/wave_5.tres" id="10_r2knn"]
+[ext_resource type="Resource" uid="uid://dbyt76e4rajwv" path="res://game_object/vague/wave_4.tres" id="9_g8l4i"]
+[ext_resource type="Resource" uid="uid://6rixq76krgtu" path="res://game_object/vague/wave_5.tres" id="10_r2knn"]
 [ext_resource type="PackedScene" uid="uid://be4s1fm7846ju" path="res://game_object/entities/npc/npc_mahaut.tscn" id="13_kff1p"]
 [ext_resource type="Script" path="res://Engine/Entities/NPC/NpcParameters.cs" id="16_urax1"]
 [ext_resource type="Script" path="res://Engine/Entities/NPC/NpcData.cs" id="17_5lf6i"]
 [ext_resource type="AudioStream" uid="uid://c2jma2qph1eoc" path="res://sounds/ambiance/wind1.wav" id="18_i6bsy"]
 [ext_resource type="AudioStream" uid="uid://dbi20q5bybisx" path="res://sounds/ambiance/war.wav" id="19_ltgwi"]
 
-[sub_resource type="Resource" id="Resource_4x8mm"]
+[sub_resource type="Resource" id="Resource_83lgk"]
 resource_local_to_scene = true
 script = ExtResource("5_5pcve")
 Velocity = Vector3(0, 0, 0)
@@ -32,7 +32,7 @@ OldRawRotation = Vector2(0, 0)
 Rotation = Vector2(0, 0)
 OldRotation = Vector2(0, 0)
 
-[sub_resource type="Resource" id="Resource_at37v"]
+[sub_resource type="Resource" id="Resource_8bpm0"]
 resource_local_to_scene = true
 script = ExtResource("6_rr17b")
 Speed = 150.0
@@ -63,7 +63,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 [sub_resource type="PlaneMesh" id="PlaneMesh_fooel"]
 size = Vector2(86, 14.5)
 
-[sub_resource type="Resource" id="Resource_3yn0u"]
+[sub_resource type="Resource" id="Resource_boert"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -75,7 +75,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_8ltgv"]
+[sub_resource type="Resource" id="Resource_4x3tv"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -84,7 +84,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_mctrr"]
+[sub_resource type="Resource" id="Resource_whlj5"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -96,7 +96,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_uvy4w"]
+[sub_resource type="Resource" id="Resource_1jorm"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -105,7 +105,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_svqrk"]
+[sub_resource type="Resource" id="Resource_kvlv0"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -117,7 +117,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_7du5l"]
+[sub_resource type="Resource" id="Resource_clgy8"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -126,7 +126,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_g3trg"]
+[sub_resource type="Resource" id="Resource_0unxs"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -138,7 +138,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_ktuxj"]
+[sub_resource type="Resource" id="Resource_7nqoj"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -147,7 +147,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_osy7v"]
+[sub_resource type="Resource" id="Resource_dgjqv"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -159,7 +159,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_5wvrw"]
+[sub_resource type="Resource" id="Resource_bfdr4"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -168,7 +168,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_o2dtp"]
+[sub_resource type="Resource" id="Resource_oq1be"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -180,7 +180,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_ne7ex"]
+[sub_resource type="Resource" id="Resource_har6d"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -189,7 +189,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_otigk"]
+[sub_resource type="Resource" id="Resource_mu4aj"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -201,7 +201,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_87ojt"]
+[sub_resource type="Resource" id="Resource_cls2l"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -210,7 +210,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_6nnra"]
+[sub_resource type="Resource" id="Resource_my3q4"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -222,7 +222,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_xdjfl"]
+[sub_resource type="Resource" id="Resource_1g341"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -231,7 +231,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_1uyjq"]
+[sub_resource type="Resource" id="Resource_jpmfp"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -243,7 +243,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_p54k6"]
+[sub_resource type="Resource" id="Resource_ckmoq"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -252,7 +252,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_460q0"]
+[sub_resource type="Resource" id="Resource_s2uui"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -264,7 +264,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_imkee"]
+[sub_resource type="Resource" id="Resource_nxuq5"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -273,7 +273,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_e37ag"]
+[sub_resource type="Resource" id="Resource_dq8vc"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -285,7 +285,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_53w1f"]
+[sub_resource type="Resource" id="Resource_vy3gc"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -294,7 +294,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_qooag"]
+[sub_resource type="Resource" id="Resource_b2d2t"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -306,7 +306,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_liw5l"]
+[sub_resource type="Resource" id="Resource_fd5mi"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -315,7 +315,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_qbcws"]
+[sub_resource type="Resource" id="Resource_arncr"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -327,7 +327,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_t16e6"]
+[sub_resource type="Resource" id="Resource_agdv0"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -336,7 +336,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_ubn7b"]
+[sub_resource type="Resource" id="Resource_dk35w"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -348,7 +348,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_n6x3o"]
+[sub_resource type="Resource" id="Resource_beig7"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -357,7 +357,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_mvn4g"]
+[sub_resource type="Resource" id="Resource_hw1lf"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -369,7 +369,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_4ldoc"]
+[sub_resource type="Resource" id="Resource_ffcrt"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -378,7 +378,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_u7ddj"]
+[sub_resource type="Resource" id="Resource_ifj6v"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -390,7 +390,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_fpwvf"]
+[sub_resource type="Resource" id="Resource_amkak"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -399,7 +399,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_jkhlj"]
+[sub_resource type="Resource" id="Resource_6cjly"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -411,7 +411,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_3p2y7"]
+[sub_resource type="Resource" id="Resource_46a78"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -420,7 +420,7 @@ FireTargetCount = 0
 FireTimer = 0.0
 NextTargetTimer = 0.0
 
-[sub_resource type="Resource" id="Resource_a6bw5"]
+[sub_resource type="Resource" id="Resource_ymobs"]
 resource_local_to_scene = true
 script = ExtResource("16_urax1")
 MinRange = 2.0
@@ -432,7 +432,7 @@ Spread = 0.05
 ArrowDamage = 2
 NextTargetCoolDown = 1.0
 
-[sub_resource type="Resource" id="Resource_nf8wr"]
+[sub_resource type="Resource" id="Resource_q4xca"]
 resource_local_to_scene = true
 script = ExtResource("17_5lf6i")
 AvailableTargets = null
@@ -450,8 +450,8 @@ script = ExtResource("1_dk0tg")
 
 [node name="ENT_Player" parent="." instance=ExtResource("1_dbp7y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2429, 5.85699, 6.17915)
-Data = SubResource("Resource_4x8mm")
-Parameters = SubResource("Resource_at37v")
+Data = SubResource("Resource_83lgk")
+Parameters = SubResource("Resource_8bpm0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.279058, 0.960274, 0, -0.960274, 0.279058, 0, 17.8164, 0)
@@ -485,93 +485,93 @@ mesh = SubResource("PlaneMesh_fooel")
 
 [node name="NPC_Mahaut" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -59.5562, 5, -10.4892)
-Parameters = SubResource("Resource_3yn0u")
-Data = SubResource("Resource_8ltgv")
+Parameters = SubResource("Resource_boert")
+Data = SubResource("Resource_4x3tv")
 
 [node name="NPC_Mahaut2" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -54.1402, 5, -10.4892)
-Parameters = SubResource("Resource_mctrr")
-Data = SubResource("Resource_uvy4w")
+Parameters = SubResource("Resource_whlj5")
+Data = SubResource("Resource_1jorm")
 
 [node name="NPC_Mahaut3" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -48.8853, 5, -10.4892)
-Parameters = SubResource("Resource_svqrk")
-Data = SubResource("Resource_7du5l")
+Parameters = SubResource("Resource_kvlv0")
+Data = SubResource("Resource_clgy8")
 
 [node name="NPC_Mahaut4" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -43.4612, 5, -10.4892)
-Parameters = SubResource("Resource_g3trg")
-Data = SubResource("Resource_ktuxj")
+Parameters = SubResource("Resource_0unxs")
+Data = SubResource("Resource_7nqoj")
 
 [node name="NPC_Mahaut5" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -38.3751, 5, -10.4892)
-Parameters = SubResource("Resource_osy7v")
-Data = SubResource("Resource_5wvrw")
+Parameters = SubResource("Resource_dgjqv")
+Data = SubResource("Resource_bfdr4")
 
 [node name="NPC_Mahaut6" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -33.4086, 5, -10.4892)
-Parameters = SubResource("Resource_o2dtp")
-Data = SubResource("Resource_ne7ex")
+Parameters = SubResource("Resource_oq1be")
+Data = SubResource("Resource_har6d")
 
 [node name="NPC_Mahaut7" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.0323, 5, -10.4892)
-Parameters = SubResource("Resource_otigk")
-Data = SubResource("Resource_87ojt")
+Parameters = SubResource("Resource_mu4aj")
+Data = SubResource("Resource_cls2l")
 
 [node name="NPC_Mahaut8" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22.3647, 5, -10.4892)
-Parameters = SubResource("Resource_6nnra")
-Data = SubResource("Resource_xdjfl")
+Parameters = SubResource("Resource_my3q4")
+Data = SubResource("Resource_1g341")
 
 [node name="NPC_Mahaut9" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.4304, 5, -10.4892)
-Parameters = SubResource("Resource_1uyjq")
-Data = SubResource("Resource_p54k6")
+Parameters = SubResource("Resource_jpmfp")
+Data = SubResource("Resource_ckmoq")
 
 [node name="NPC_Mahaut10" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5562, 5, 5.59699)
-Parameters = SubResource("Resource_460q0")
-Data = SubResource("Resource_imkee")
+Parameters = SubResource("Resource_s2uui")
+Data = SubResource("Resource_nxuq5")
 
 [node name="NPC_Mahaut11" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1402, 5, 5.59699)
-Parameters = SubResource("Resource_e37ag")
-Data = SubResource("Resource_53w1f")
+Parameters = SubResource("Resource_dq8vc")
+Data = SubResource("Resource_vy3gc")
 
 [node name="NPC_Mahaut12" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8853, 5, 5.59699)
-Parameters = SubResource("Resource_qooag")
-Data = SubResource("Resource_liw5l")
+Parameters = SubResource("Resource_b2d2t")
+Data = SubResource("Resource_fd5mi")
 
 [node name="NPC_Mahaut13" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4612, 5, 5.59699)
-Parameters = SubResource("Resource_qbcws")
-Data = SubResource("Resource_t16e6")
+Parameters = SubResource("Resource_arncr")
+Data = SubResource("Resource_agdv0")
 
 [node name="NPC_Mahaut14" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3751, 5, 5.59699)
-Parameters = SubResource("Resource_ubn7b")
-Data = SubResource("Resource_n6x3o")
+Parameters = SubResource("Resource_dk35w")
+Data = SubResource("Resource_beig7")
 
 [node name="NPC_Mahaut15" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4086, 5, 5.59699)
-Parameters = SubResource("Resource_mvn4g")
-Data = SubResource("Resource_4ldoc")
+Parameters = SubResource("Resource_hw1lf")
+Data = SubResource("Resource_ffcrt")
 
 [node name="NPC_Mahaut16" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0323, 5, 5.59699)
-Parameters = SubResource("Resource_u7ddj")
-Data = SubResource("Resource_fpwvf")
+Parameters = SubResource("Resource_ifj6v")
+Data = SubResource("Resource_amkak")
 
 [node name="NPC_Mahaut17" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3647, 5, 5.59699)
-Parameters = SubResource("Resource_jkhlj")
-Data = SubResource("Resource_3p2y7")
+Parameters = SubResource("Resource_6cjly")
+Data = SubResource("Resource_46a78")
 
 [node name="NPC_Mahaut18" parent="NPC" instance=ExtResource("13_kff1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4304, 5, 5.59699)
-Parameters = SubResource("Resource_a6bw5")
-Data = SubResource("Resource_nf8wr")
+Parameters = SubResource("Resource_ymobs")
+Data = SubResource("Resource_q4xca")
 
 [node name="ASP_Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_i6bsy")

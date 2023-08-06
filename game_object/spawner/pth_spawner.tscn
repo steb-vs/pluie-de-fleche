@@ -15,7 +15,7 @@ curve = SubResource("Curve3D_dwg05")
 script = ExtResource("1_btnc7")
 
 [node name="PTF_Locations" type="PathFollow3D" parent="."]
-transform = Transform3D(0.998259, 0.000553293, 0.0589806, 8.73115e-11, 0.999956, -0.00938051, -0.0589832, 0.00936418, 0.998215, -0.57774, 0.555908, 5.86269)
+transform = Transform3D(0.998259, 0.000553298, 0.058981, 5.82077e-11, 0.999956, -0.00938055, -0.0589836, 0.00936422, 0.998215, -0.57774, 0.555908, 5.86269)
 
 [node name="TMR_SpawnTime" type="Timer" parent="."]
 wait_time = 0.1

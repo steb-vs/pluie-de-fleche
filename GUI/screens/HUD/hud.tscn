@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cysrfpwm0ykgh" path="res://GUI/components/pgb_city_life.tscn" id="1_as58p"]
 [ext_resource type="Script" path="res://GUI/components/pgb_city_life.gd" id="2_trwcn"]
-[ext_resource type="PackedScene" path="res://GUI/components/lbl_fame_counter.tscn" id="3_kihb3"]
+[ext_resource type="PackedScene" uid="uid://bn4n5gt2ho5y1" path="res://GUI/components/lbl_fame_counter.tscn" id="3_kihb3"]
 [ext_resource type="Script" path="res://GUI/components/lbl_fame_counter.gd" id="4_gjrrd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lf67t"]
